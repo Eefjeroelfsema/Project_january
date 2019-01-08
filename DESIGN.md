@@ -4,13 +4,13 @@
 
 - OECD-data on government deficits and government spendings
 - Downloaded in csv form from the OECD site: https://data.oecd.org/gga/general-government-deficit.htm#indicator-chart
-- Convert the EU downloaded OECD-data into JSON and load into worldmap
+- Convert the EU downloaded OECD-data into JSON and load into EU map
 
 ## Technical components
 ![schermafbeelding 2019-01-08 om 11 43 20](https://user-images.githubusercontent.com/43995505/50825981-c07d9f80-133a-11e9-95fa-29b869f7206c.png)
 
 ## Components
-### Worldmap:
+### EU map (zoom this map in on EU):
 ![schermafbeelding 2019-01-08 om 11 55 12](https://user-images.githubusercontent.com/43995505/50826746-d12f1500-133c-11e9-934d-712c2cf0b3bd.png)
 
 ### Multiple linechart:
