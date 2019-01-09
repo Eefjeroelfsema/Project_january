@@ -20,12 +20,14 @@ of the budget deficits, government spendings GDP etc. there are 2 examples of th
 
 ## Minimum features:
 - Map of the European union, with list of budget deficits.
-- For each country a specific page with additional information.
+- Multiple linechart with historical data for all countries
+- If you click on the button you can look at a country in specific
 
 ## Maximum features:
 - The amount of information on the specific country pages.
 - For every extra additional information, a page where it is visualized for all the countries together
 - Some ideas that come in mind when working on this project.
+- For each country a specific page with additional information.
 
 ## Data source:
 OECD
