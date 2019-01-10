@@ -1,3 +1,5 @@
+function makeMap() {
+
 // var data = 'data.json'
 var world_countries = 'world_countries.json'
 var data = 'data.json'
@@ -108,3 +110,4 @@ function map(svg, data, dataset, year, height, width, margin){
                 });
 
 }
+};
