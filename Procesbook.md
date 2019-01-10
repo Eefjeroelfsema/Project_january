@@ -10,14 +10,13 @@ I also divided my homepage in 2 columns, I decided to go for 2 columns because I
 display the worldmap and the interactive chart set next to each other.
 
 I formatted my csv data into a json file, via my converter (I adjusted the converter
-  I made in previous projects to fit on my current data).
+I made in previous projects to fit on my current data).
 
 Lastly I added the worldmap to my homepage (worldmap-page), and I puzzled a bit
 such that now only Europe is displayed as I wanted. I added colours, but not the right one.
 Tomorrow I want to figure out which colours I'm going to use. I also added an interactive feature,
 namely the tip.
 
-<<<<<<< HEAD
 ![schermafbeelding 2019-01-09 om 16 12 54](https://user-images.githubusercontent.com/43995505/50908177-79baa300-1429-11e9-8d07-b13466b8cfcf.png)
 
 ## Day 4
@@ -25,16 +24,11 @@ Today I added the multiple linechart (see picture).
 Because I had a few bugs and I had to wait a long time before Tim came to help me, this
 is the only thing I could make today.
 ![schermafbeelding 2019-01-10 om 15 11 17](https://user-images.githubusercontent.com/43995505/50974510-ab943e00-14eb-11e9-82be-56713cef5222.png)
-
 Improvents tomorrow: I want to add circles to the lines, where the points are displayed.
 And with this an interactive feature that you can see the points (see picture for the circles).
 I want to make a buttom where you can chose to display only 1 country, or a few countries at the same time. I also
 want to make the axis for the linechart.
-
 ![schermafbeelding 2019-01-10 om 15 23 49](https://user-images.githubusercontent.com/43995505/50974591-e0a09080-14eb-11e9-8b51-0ea34a30313f.png)
-
 Improvements next week: I want to make a legend for the world map and I want to add figures
 to my specific info page per coutnry.
-=======
 ![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
->>>>>>> b2ba11f257bcd6c9ec060b18995d9313cd90c4d5
