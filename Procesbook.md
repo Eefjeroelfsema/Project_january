@@ -4,7 +4,7 @@
 Today I made the page for the specific information and I added the same style to it as the
 homepage (via bootstrap). I did this because it makes it look better. See picture below
 
-![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
+![schermafbeelding 2019-01-09 om 16 12 54](https://user-images.githubusercontent.com/43995505/50908177-79baa300-1429-11e9-8d07-b13466b8cfcf.png)
 
 I also divided my homepage in 2 columns, I decided to go for 2 columns because I can now
 display the worldmap and the interactive chart set next to each other.
@@ -17,6 +17,7 @@ such that now only Europe is displayed as I wanted. I added colours, but not the
 Tomorrow I want to figure out which colours I'm going to use. I also added an interactive feature,
 namely the tip.
 
+<<<<<<< HEAD
 ![schermafbeelding 2019-01-09 om 16 12 54](https://user-images.githubusercontent.com/43995505/50908177-79baa300-1429-11e9-8d07-b13466b8cfcf.png)
 
 ## Day 4
@@ -34,3 +35,6 @@ want to make the axis for the linechart.
 
 Improvements next week: I want to make a legend for the world map and I want to add figures
 to my specific info page per coutnry.
+=======
+![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
+>>>>>>> b2ba11f257bcd6c9ec060b18995d9313cd90c4d5
