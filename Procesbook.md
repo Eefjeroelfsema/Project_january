@@ -17,7 +17,8 @@ such that now only Europe is displayed as I wanted. I added colours, but not the
 Tomorrow I want to figure out which colours I'm going to use. I also added an interactive feature,
 namely the tip.
 
-![schermafbeelding 2019-01-09 om 16 12 54](https://user-images.githubusercontent.com/43995505/50908177-79baa300-1429-11e9-8d07-b13466b8cfcf.png)
+![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
+
 
 ## Day 4
 Today I added the multiple linechart (see picture).
@@ -31,4 +32,3 @@ want to make the axis for the linechart.
 ![schermafbeelding 2019-01-10 om 15 23 49](https://user-images.githubusercontent.com/43995505/50974591-e0a09080-14eb-11e9-8b51-0ea34a30313f.png)
 Improvements next week: I want to make a legend for the world map and I want to add figures
 to my specific info page per coutnry.
-![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
