@@ -32,3 +32,19 @@ want to make the axis for the linechart.
 ![schermafbeelding 2019-01-10 om 15 23 49](https://user-images.githubusercontent.com/43995505/50974591-e0a09080-14eb-11e9-8b51-0ea34a30313f.png)
 Improvements next week: I want to make a legend for the world map and I want to add figures
 to my specific info page per coutnry.
+
+
+## Day 5
+Today I added the circles and made axis for the multiple linegraph (see picture).
+![schermafbeelding 2019-01-11 om 15 18 56](https://user-images.githubusercontent.com/43995505/51039636-ea8ec600-15b5-11e9-875b-d77ccff5c05d.png)
+I deleted the countries in my worldmap which are not in the Europian Union. And I coloured the countries
+according to their budget deficit (see picture)
+![schermafbeelding 2019-01-11 om 15 19 03](https://user-images.githubusercontent.com/43995505/51039638-eb275c80-15b5-11e9-8550-7c5919af5e06.png)
+Next week I want to add the slider to the world map, such that you can slide over the years and the colours of the 
+world-map change (according to their budget deficit that year). I want to make the lines in the line graph the same
+colour and if you touch the lines with the mouse, it gives you a different colour. This way you can see specifically how
+that line is going, but it is'nt this messy anymore.
+
+Today I also decided what I want for my specific country information page: I want to make a pie chart, which shows which
+percentage of the government spendings is spent to a specific sector. I want to add the government spendings also
+to that page.
