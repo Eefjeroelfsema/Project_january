@@ -36,11 +36,11 @@ to my specific info page per coutnry.
 
 ## Day 5
 Today I added the circles and made axis for the multiple linegraph (see picture).
-![schermafbeelding 2019-01-11 om 15 18 56](https://user-images.githubusercontent.com/43995505/51039636-ea8ec600-15b5-11e9-875b-d77ccff5c05d.png)
+![schermafbeelding 2019-01-11 om 15 19 03](https://user-images.githubusercontent.com/43995505/51039638-eb275c80-15b5-11e9-8550-7c5919af5e06.png)
 I deleted the countries in my worldmap which are not in the Europian Union. And I coloured the countries
 according to their budget deficit (see picture)
-![schermafbeelding 2019-01-11 om 15 19 03](https://user-images.githubusercontent.com/43995505/51039638-eb275c80-15b5-11e9-8550-7c5919af5e06.png)
-Next week I want to add the slider to the world map, such that you can slide over the years and the colours of the 
+![schermafbeelding 2019-01-11 om 15 18 56](https://user-images.githubusercontent.com/43995505/51039636-ea8ec600-15b5-11e9-875b-d77ccff5c05d.png)
+Next week I want to add the slider to the world map, such that you can slide over the years and the colours of the
 world-map change (according to their budget deficit that year). I want to make the lines in the line graph the same
 colour and if you touch the lines with the mouse, it gives you a different colour. This way you can see specifically how
 that line is going, but it is'nt this messy anymore.
