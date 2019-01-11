@@ -28,14 +28,6 @@ Promise.all(requests).then(function(response) {
       .attr('class', 'map')
       .attr('transform', 'translate(0, -0)');
 
-    // make title of map
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2)
-      .attr('y', 20)
-      .attr('text-anchor', 'middle')
-      .text('Map of the world with GDP forecast ')
-
       map(svg, data, dataset, '2017', height, width, margin);
 
 }).catch(function(e){
@@ -56,10 +48,8 @@ function map(svg, data, dataset, year, height, width, margin){
 
     // make color range for the different percentages of gdp forecasts
     var color = d3.scaleThreshold()
-      .domain([-5,-3,-1,1,3,5,7,9,11])
-      .range(["rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"])
-
-
+    .domain([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5])
+    .range(["FF0000","FF2222", "FF4444", "FF5555", "FF6666","FF7777", "FF8888", "FF9999", "FFCCCC", "FFCCCC", "FFEEEE", "DDFFDD", "BBFF44", "99FF99", "77FF77", "55FF55", "00FF00"])
     var path = d3.geoPath();
 
     var projection = d3.geoMercator()

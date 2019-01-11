@@ -57,23 +57,27 @@ rect {
 
 /* basic positioning */
 .legend { list-style: none; }
-.legend li { float: left; margin-right: 10px; }
-.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+.legend li { float: left; margin-right: 0px; }
+.legend span { border: 1px solid #ccc; float: left; width: 5px; height: 5px; margin: 2px; }
 
 /* your colors */
 
-
-.legend .first { background-color: rgb(222,235,247) }
-.legend .second { background-color: rgb(198,219,239) }
-.legend .third {background-color: rgb(158,202,225) }
-.legend .fourth{ background-color: rgb(107,174,214) ;}
-.legend .fifth { background-color: rgb(66,146,198) ; }
-.legend .sixth { background-color: rgb(33,113,181) ; }
-.legend .seventh { background-color: rgb(8,81,156) ;}
-.legend .eigth { background-color: rgb(8,48,107) }
-.legend .ninth { background-color: rgb(3,19,43)}
-.legend .second { background-color: rgb(198,219,239) }
-
+.legend .first { background-color: "FF0000" }
+.legend .second { background-color: "FF2222" }
+.legend .third {background-color: "FF4444" }
+.legend .fourth{ background-color: "FF5555" ;}
+.legend .fifth { background-color:  "FF6666" ; }
+.legend .sixth { background-color: "FF7777" ; }
+.legend .seventh { background-color: "FF8888" ;}
+.legend .eigth { background-color: "FF9999" }
+.legend .ninth { background-color: "FFCCCC"}
+.legend .tenth { background-color: "FFEEEE" }
+.legend .eleven { background-color: "DDFFDD" }
+.legend .twelve { background-color:  "BBFF44" }
+.legend .thirteen { background-color: "99FF99" }
+.legend .fourteen { background-color: "77FF77" }
+.legend .fifteen { background-color:  "55FF55" }
+.legend .sixteen { background-color: "00FF00" }
 
 .names {
 fill: none;
