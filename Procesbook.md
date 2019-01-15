@@ -48,3 +48,21 @@ that line is going, but it is'nt this messy anymore.
 Today I also decided what I want for my specific country information page: I want to make a pie chart, which shows which
 percentage of the government spendings is spent to a specific sector. I want to add the government spendings also
 to that page.
+
+## Day 6 (monday 2nd week)
+Kim gave me a tip in the meeting we had (on friday), that it might be more explaining if I showed where the money
+in a certain year is spend to (specifically if there is a huge deficit). This information will
+be on the specific information page in my website. I found on the website of the OECD
+10 sectors where the government spends her money to and it is in percentages of the total spendings.
+
+Today I formatted the data (csv) I found into a json file, and I made a histogram of the data.
+After I made the histogram, I saw that the data was in percentages and that was not what I wanted.
+I want to show the total amount of money spend to a sector instead of the percentages.
+I can solve this because I also have data of the total amount of money spend by the government in each year,
+so with this information and with the percentages I can calculate the total amound of money spend to a sector.
+I will do this tomorrow, and add the information to the histogram (instead of the percentage information).
+I want to display the percentage information in a piechart, I want to make a start with this wednesday.
+
+In the picture below you can see the histogram I made with the percentage info.
+![schermafbeelding 2019-01-15 om 10 45 19](https://user-images.githubusercontent.com/43995505/51172161-efec5900-18b2-11e9-97c3-7fee76cf885b.png)
+ 
