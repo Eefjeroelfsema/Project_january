@@ -9,7 +9,7 @@ import json as js
 
 
 INPUT_CSV = "data.csv"
-OUTPUT_JSON = "data.json"
+OUTPUT_JSON = "data_spendings.json"
 
 def converter(INPUT_CSV):
     json_list = []
@@ -18,7 +18,7 @@ def converter(INPUT_CSV):
         data = csv.DictReader(csvfile)
 
         for row in data:
-            if '_s' not in row['LOCATION']:
+            if '_s' in row['LOCATION']:
                 country = {}
                 country['country'] = row['LOCATION']
                 country['1995'] = row['1995']
@@ -43,7 +43,6 @@ def converter(INPUT_CSV):
                 country['2014'] = row['2014']
                 country['2015'] = row['2015']
                 country['2016'] = row['2016']
-                country['2017'] = row['2017']
                 json_list.append(country)
 
         print(json_list)

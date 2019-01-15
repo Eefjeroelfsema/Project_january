@@ -9,7 +9,7 @@ import json as js
 import copy
 
 
-INPUT_CSV = "spendings_distribution.csv"
+INPUT_CSV = "sectoren_GDP.csv"
 OUTPUT_JSON = "data_distribution.json"
 
 def converter(INPUT_CSV):
@@ -20,38 +20,74 @@ def converter(INPUT_CSV):
 
         for row in data:
             if row['LOCATION'] not in json_list:
-                json_list[row['LOCATION']] = {'2007': {"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                json_list[row['LOCATION']] = {'1995': {"TOT":0,"DEF":0,"HEALTH":0,
+                "HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0},
-                '2008':{"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                '1996': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0},
-                '2009':{"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                '1997': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0},
-                '2010':{"DEF":0,"HEALTH":0,
+                '1998': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '1999': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2000': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2001': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2002': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2003': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2004': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2005': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2006': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2007': {"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2008':{"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2009':{"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
+                "ENVPROT":0, "EDU":0},
+                '2010':{"TOT":0,"DEF":0,"HEALTH":0,
                 "HOUCOMM":0,"PUBORD":0,"ECOAFF":0, "GRALPUBSER":0,
                 "RECULTREL":0, "SOCPROT":0,"ENVPROT":0, "EDU":0},
-                '2011':{"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                '2011':{"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0},
-                '2012':{"DEF":0,
+                '2012':{"TOT":0,"DEF":0,
                 "HEALTH":0,"HOUCOMM":0,"PUBORD":0,"ECOAFF":0, "GRALPUBSER":0,
                 "RECULTREL":0, "SOCPROT":0,"ENVPROT":0, "EDU":0},
-                '2013':{"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                '2013':{"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0},
-                '2014':{"DEF":0,
+                '2014':{"TOT":0,"DEF":0,
                 "HEALTH":0,"HOUCOMM":0,"PUBORD":0,"ECOAFF":0, "GRALPUBSER":0,
                 "RECULTREL":0, "SOCPROT":0,"ENVPROT":0, "EDU":0},
-                '2015':{"DEF":0,
+                '2015':{"TOT":0,"DEF":0,
                 "HEALTH":0,"HOUCOMM":0,"PUBORD":0,"ECOAFF":0, "GRALPUBSER":0,
                 "RECULTREL":0, "SOCPROT":0,"ENVPROT":0, "EDU":0},
-                '2016':{"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
+                '2016':{"TOT":0,"DEF":0,"HEALTH":0,"HOUCOMM":0,"PUBORD":0,
                 "ECOAFF":0, "GRALPUBSER":0,"RECULTREL":0, "SOCPROT":0,
                 "ENVPROT":0, "EDU":0}}
-                json_list[row['LOCATION']][row['TIME']][row['SUBJECT']] = row['Value']
-            else:
+            if row['MEASURE'] == "PC_GDP":
                 json_list[row['LOCATION']][row['TIME']][row['SUBJECT']] = row['Value']
 
 

@@ -65,4 +65,17 @@ I want to display the percentage information in a piechart, I want to make a sta
 
 In the picture below you can see the histogram I made with the percentage info.
 ![schermafbeelding 2019-01-15 om 10 45 19](https://user-images.githubusercontent.com/43995505/51172161-efec5900-18b2-11e9-97c3-7fee76cf885b.png)
- 
+
+## Day 7
+Today I found the right data for in my histogram and I made a beginning with the piechart.
+Something goes wrong in my piechart, but I don't know what, so I'm going to ask that tomorrow.
+
+I added axis to my histogram, but it is not working good enough.
+My margins are not working good enough.  I will ask that tomorrow as well. Picture of my histogram below:
+![schermafbeelding 2019-01-15 om 15 31 12](https://user-images.githubusercontent.com/43995505/51186872-e7a81400-18da-11e9-9491-832bde49bc51.png)
+
+I adjusted my linechart, so that it is not looking very messy anymore. All the lines are
+grey and if you put your mouse on the lines, they will turn red, till you move your mouse
+somewhere else. Picture of my linechart below:
+![schermafbeelding 2019-01-15 om 15 31 36](https://user-images.githubusercontent.com/43995505/51186851-d9f28e80-18da-11e9-8590-47341d7899fa.png)
+Today my group came together as well, and we made an style guide.

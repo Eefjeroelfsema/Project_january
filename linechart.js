@@ -69,12 +69,6 @@ function countryline(svg, x_scale, y_scale, years, country_values, specific_coun
   .y(function(d) { return y_scale(d); }) // set the y values for the line generator
   .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-  svg.append("path")
-    .datum(country_values[specific_country]) // 10. Binds data to the line
-    .attr("class", "line") // Assign a class for styling
-    .style("stroke", colour)
-    .attr("d", line); // 11. Calls the line generator
-
   var tip = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
@@ -85,34 +79,58 @@ function countryline(svg, x_scale, y_scale, years, country_values, specific_coun
   svg.call(tip);
 
 
+  svg.append("path")
+    .datum(country_values[specific_country]) // 10. Binds data to the line
+    .attr("class", "line") // Assign a class for styling
+    .style("stroke", "SlateGrey")
+    .attr("d", line) // 11. Calls the line generator
+    .on('mouseover', function (d, i) {
+      console.log(d);
+
+      d3.select(this)
+      .style("stroke", "Red")
+    })
+    .on('mouseout', function (d) {
+      tip.hide(d)
+      d3.select(this)
+      .style("stroke", "SlateGrey")
+    })
+
+
+
+
   svg.selectAll(".country" + specific_country)
     .data(country_values[specific_country])
     .enter()
     .append("circle")
-    .style("fill", colour)
+    .style("fill", "SlateGrey")
     .attr("cx", function(d, i) {
       return x_scale(years[i]);
     })
     .attr("cy", function(d) {
       return y_scale(d)})
-    .attr("r", 5)
+    .attr("r", 3)
     // show consumer confidence per dot
     .on('mouseover', tip.show)
     .on('mousover', function (d, i) {
       d3.select(this)
       .transition()
       .duration(500)
+      .style("fill", "Red")
       .attr('r',10)
       .attr('stroke-width',3)
+
     })
     .on('mouseout', tip.hide)
     .on('mouseout', function (d) {
       tip.hide(d)
       d3.select(this)
         .transition()
+        .style("fill", "SlateGrey")
         .duration(500)
-        .attr('r',5)
+        .attr('r',3)
         .attr('stroke-width',1)
+
     })
 
 
