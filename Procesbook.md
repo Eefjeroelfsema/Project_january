@@ -20,16 +20,19 @@ namely the tip.
 ![schermafbeelding 2019-01-09 om 16 12 45](https://user-images.githubusercontent.com/43995505/50908176-79baa300-1429-11e9-990d-02015c022907.png)
 
 
+
 ## Day 4
 Today I added the multiple linechart (see picture).
 Because I had a few bugs and I had to wait a long time before Tim came to help me, this
 is the only thing I could make today.
 ![schermafbeelding 2019-01-10 om 15 11 17](https://user-images.githubusercontent.com/43995505/50974510-ab943e00-14eb-11e9-82be-56713cef5222.png)
+
 Improvents tomorrow: I want to add circles to the lines, where the points are displayed.
 And with this an interactive feature that you can see the points (see picture for the circles).
 I want to make a buttom where you can chose to display only 1 country, or a few countries at the same time. I also
 want to make the axis for the linechart.
 ![schermafbeelding 2019-01-10 om 15 23 49](https://user-images.githubusercontent.com/43995505/50974591-e0a09080-14eb-11e9-8b51-0ea34a30313f.png)
+
 Improvements next week: I want to make a legend for the world map and I want to add figures
 to my specific info page per coutnry.
 
@@ -37,9 +40,11 @@ to my specific info page per coutnry.
 ## Day 5
 Today I added the circles and made axis for the multiple linegraph (see picture).
 ![schermafbeelding 2019-01-11 om 15 19 03](https://user-images.githubusercontent.com/43995505/51039638-eb275c80-15b5-11e9-8550-7c5919af5e06.png)
+
 I deleted the countries in my worldmap which are not in the Europian Union. And I coloured the countries
 according to their budget deficit (see picture)
 ![schermafbeelding 2019-01-11 om 15 18 56](https://user-images.githubusercontent.com/43995505/51039636-ea8ec600-15b5-11e9-875b-d77ccff5c05d.png)
+
 Next week I want to add the slider to the world map, such that you can slide over the years and the colours of the
 world-map change (according to their budget deficit that year). I want to make the lines in the line graph the same
 colour and if you touch the lines with the mouse, it gives you a different colour. This way you can see specifically how
@@ -64,6 +69,7 @@ I will do this tomorrow, and add the information to the histogram (instead of th
 I want to display the percentage information in a piechart, I want to make a start with this wednesday.
 
 In the picture below you can see the histogram I made with the percentage info.
+
 ![schermafbeelding 2019-01-15 om 10 45 19](https://user-images.githubusercontent.com/43995505/51172161-efec5900-18b2-11e9-97c3-7fee76cf885b.png)
 
 ## Day 7
@@ -78,4 +84,5 @@ I adjusted my linechart, so that it is not looking very messy anymore. All the l
 grey and if you put your mouse on the lines, they will turn red, till you move your mouse
 somewhere else. Picture of my linechart below:
 ![schermafbeelding 2019-01-15 om 15 31 36](https://user-images.githubusercontent.com/43995505/51186851-d9f28e80-18da-11e9-8590-47341d7899fa.png)
+
 Today my group came together as well, and we made an style guide.
