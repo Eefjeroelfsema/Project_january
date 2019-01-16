@@ -86,3 +86,20 @@ somewhere else. Picture of my linechart below:
 ![schermafbeelding 2019-01-15 om 15 31 36](https://user-images.githubusercontent.com/43995505/51186851-d9f28e80-18da-11e9-8590-47341d7899fa.png)
 
 Today my group came together as well, and we made an style guide.
+
+## Day 8
+Today I finished my piechart, it's not interactive yet but it works. See picture below.
+
+![schermafbeelding 2019-01-16 om 15 21 41](https://user-images.githubusercontent.com/43995505/51255097-d7f40280-19a2-11e9-8791-0c0aad879777.png)
+
+
+I want to make change the year of the specific country (which page you're on), that the piechart and the
+barchart change together. I will work on that tomorrow.
+
+I also added a slider to my EU-map, which updates it directly. Picture of my homepage below.
+
+![schermafbeelding 2019-01-16 om 15 21 50](https://user-images.githubusercontent.com/43995505/51255134-e7734b80-19a2-11e9-9e5c-239a4ab18f6d.png)
+
+Tomorrow I want to make my legend prettier, and in the svg of my map (not below the page as it is now).
+I also want to make a start with the interactivity between the pages. I also want to make a button, that
+you can choose of which countries you want to see their historical budget deficits. 

@@ -46,13 +46,10 @@ Promise.all(request).then(function(response) {
 
       make_axis(svg, x_scale, y_scale, height, width, margin)
 
-      colours = ["Aqua", "Blue", "BlueViolet", "Chartreuse", "Crimson", "DarkGoldenRod", "Yellow", "Violet", "Thistle", "SlateGrey",
-      "Salmon", "SaddleBrown", "Purple", "Pink", "PaleTurquoise", "Navy", "DeepPink", "DarkSlateGray", "Black", "Khaki",
-      "LightSeaGreen", "RosyBrown", "SeaShell"]
 
       for(i = 0 ; i <= 22; i++){
         country = response[0][i].country
-        countryline(svg, x_scale, y_scale, years, country_values, country, colours[i])
+        countryline(svg, x_scale, y_scale, years, country_values, country)
 
       }
 
@@ -62,7 +59,7 @@ Promise.all(request).then(function(response) {
 })
 
 
-function countryline(svg, x_scale, y_scale, years, country_values, specific_country, colour){
+function countryline(svg, x_scale, y_scale, years, country_values, specific_country){
 
   var line = d3.line()
   .x(function(d, i) { return x_scale(years[i]); }) // set the x values for the line generator
@@ -86,7 +83,6 @@ function countryline(svg, x_scale, y_scale, years, country_values, specific_coun
     .attr("d", line) // 11. Calls the line generator
     .on('mouseover', function (d, i) {
       console.log(d);
-
       d3.select(this)
       .style("stroke", "Red")
     })
@@ -116,21 +112,19 @@ function countryline(svg, x_scale, y_scale, years, country_values, specific_coun
       d3.select(this)
       .transition()
       .duration(500)
-      .style("fill", "Red")
       .attr('r',10)
       .attr('stroke-width',3)
-
+      .style("fill", "Red")
     })
     .on('mouseout', tip.hide)
     .on('mouseout', function (d) {
       tip.hide(d)
       d3.select(this)
         .transition()
-        .style("fill", "SlateGrey")
         .duration(500)
         .attr('r',3)
         .attr('stroke-width',1)
-
+        .style("fill", "SlateGrey")
     })
 
 
