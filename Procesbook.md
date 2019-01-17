@@ -109,11 +109,12 @@ you can choose of which countries you want to see their historical budget defici
 
 Today I fixed the margins of my barchart, it looks good now.
 
-![schermafbeelding 2019-01-17 om 15 51 11](https://user-images.githubusercontent.com/43995505/51327293-4c957280-1a71-11e9-93d3-b77a74240b5b.png)
+![schermafbeelding 2019-01-17 om 15 51 19](https://user-images.githubusercontent.com/43995505/51327294-4c957280-1a71-11e9-9e07-e4a8e3161f66.png)
 
 I added a button in my linechart, where you can choose the country of which you want to see the line.
+The other lines dissapear and the chosen line appears.
 
-![schermafbeelding 2019-01-17 om 15 51 19](https://user-images.githubusercontent.com/43995505/51327294-4c957280-1a71-11e9-9e07-e4a8e3161f66.png)
+![schermafbeelding 2019-01-17 om 15 51 11](https://user-images.githubusercontent.com/43995505/51327293-4c957280-1a71-11e9-93d3-b77a74240b5b.png)
 
 Tommorow I want to make a slider, for my barchart and piechart and I want to let the html interact with
 each other.
