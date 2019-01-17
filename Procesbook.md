@@ -102,4 +102,18 @@ I also added a slider to my EU-map, which updates it directly. Picture of my hom
 
 Tomorrow I want to make my legend prettier, and in the svg of my map (not below the page as it is now).
 I also want to make a start with the interactivity between the pages. I also want to make a button, that
-you can choose of which countries you want to see their historical budget deficits. 
+you can choose of which countries you want to see their historical budget deficits.
+
+
+## Day 9
+
+Today I fixed the margins of my barchart, it looks good now.
+
+![schermafbeelding 2019-01-17 om 15 51 11](https://user-images.githubusercontent.com/43995505/51327293-4c957280-1a71-11e9-93d3-b77a74240b5b.png)
+
+I added a button in my linechart, where you can choose the country of which you want to see the line.
+
+![schermafbeelding 2019-01-17 om 15 51 19](https://user-images.githubusercontent.com/43995505/51327294-4c957280-1a71-11e9-9e07-e4a8e3161f66.png)
+
+Tommorow I want to make a slider, for my barchart and piechart and I want to let the html interact with
+each other.

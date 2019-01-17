@@ -9,34 +9,30 @@ Promise.all(requests).then(function(response) {
 
     console.log(response[0])
 
-    var svg = d3.select("#histogram")
-        .append("svg")
-        .attr("width", 700)
-        .attr("height", 550)
-
-    // define hight and width of svg and bar-chart
     // deinfe margin, h and w of svg for the map
-        margin = {top:0 , right: 50, bottom: 20, left: 50},
-        height = 550 - margin.left - margin.right,
-        width = 700 - margin.top - margin.bottom,
-
-    g = svg.append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svg = d3.select("#histogram"),
+        margin = {top:10 , right: 10, bottom: 30, left: 50},
+        height = 550;
+        width = 700;
 
     // make the svg for the map
-
+    var svg = d3.select("#histogram")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append('g')
+        .attr('transform', 'translate(0, -0)');
 
     barPadding = 1;
 
-
     var x_scale = d3.scaleLinear()
-        .domain([0, 11])
-        .range([margin.left, width]);
+        .domain([0, 10])
+        .range([margin.left, width - margin.right]);
 
     // make y_scale
     var y_scale = d3.scaleLinear()
       .domain([0, 60])
-      .range([height, margin.bottom]);
+      .range([height - margin.bottom, margin.top]);
 
     bar_chart(response[0], 'AUT', '2000', svg, x_scale, y_scale, height, width, margin, barPadding)
     makeAxis(x_scale, y_scale, height, width, margin)
@@ -76,13 +72,14 @@ Promise.all(requests).then(function(response) {
     // y-values are the suicide_rates
     .attr("y", function(d) {
       console.log(y_scale(d))
-      return y_scale(d)  //Height minus data value
+      return y_scale(d) //Height minus data value
     })
     // define width
-    .attr("width", (w) / (10))
+    .attr("width", (w - margin.left - margin.right) / (10) )
     // define height of each bar
     .attr("height", function(d) {
-      return (h - y_scale(d));
+      console.log(y_scale())
+      return (h - margin.bottom - y_scale(d));
     })
     // if mouse is in barchart, show height in activity feature
     .on('mouseover', tip.show)
@@ -94,9 +91,10 @@ Promise.all(requests).then(function(response) {
     var x_axis = d3.axisBottom()
       .scale(x_scale);
 
+
     // append group and insert axis
     svg.append("g")
-      .attr("transform", "translate(" + 0 + ", " + 470 + ")")
+      .attr("transform", "translate(" + 0 + ", " + (h - margin.bottom) + ")")
       .call(x_axis);
 
     // add scales to y-axis
@@ -105,7 +103,7 @@ Promise.all(requests).then(function(response) {
 
     // append group and insert axis
     svg.append("g")
-      .attr("transform", "translate(" + 0 + "," + 0 + ")")
+      .attr("transform", "translate(" + margin.left + "," + 0 + ")")
       .call(y_axis);
 
   }
