@@ -1,3 +1,4 @@
+function makePiechart(){
 
 var data = 'data_distribution.json'
 var format = d3.format(",");
@@ -5,8 +6,8 @@ var request = [d3.json(data)]
 
 Promise.all(request).then(function(response) {
 
-  var width = 500,
-    height = 500,
+  var width = 300,
+    height = 300,
     radius = height / 2;
 
   var vis = d3.select("#piechart")
@@ -26,26 +27,36 @@ function make_piechart(data, country, year, svg, width, height, radius){
   keys_in_list = []
   data_in_list = []
 
-  console.log(data[country]['2007'])
+  var total = 0
   Object.keys(data[country][year]).forEach(function(key) {
     if(key!= "TOT"){
-
+    total = total + parseFloat(data[country][year][key])
     data_in_list.push(parseFloat(data[country][year][key]))
     keys_in_list.push(key)
   }});
 
-  console.log(data_in_list)
-
+  console.log(total)
 
   var arc = d3.arc()              //this will create <path> elements for us using arc data
     .outerRadius(radius)
-    .innerRadius(100);
+    .innerRadius(70);
 
   var pie = d3.pie()           //this will create arc data for us given a list of values
     .value(function(d) { return d; });
 
   const color = d3.scaleOrdinal(["Aqua","BlueViolet","Chocolate", "Crimson", "Darkgreen", "DarkSlateGray", "LightCoral",
          "#e78ac3","#a6d854","#ffd92f"]);
+
+  var tooltip = d3.select('#testTim')
+    .append('div')
+    .attr('class','tooltip')
+
+  tooltip.append('div')
+    .attr('class','label');
+  tooltip.append('div')
+    .attr('class', 'count');
+  tooltip.append('div')
+    .attr('class','percent');
 
   var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
     .data(pie(data_in_list))                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties)
@@ -55,12 +66,33 @@ function make_piechart(data, country, year, svg, width, height, radius){
 
     arcs.append("svg:path")
       .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
-      .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+      .attr("d", arc)
+                     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
+    var count = 0
+  arcs.on('mouseover', function(d){
+    console.log(d);
+    console.log(this);
+        var xposSub = document.getElementById("piechart").getBoundingClientRect().left;
+        var xpos = d3.event.x - xposSub + 20
+        var ypos = d3.event.y - 100
+        tooltip.style("left" ,xpos + "px")
+        tooltip.style("top", ypos + "px")
 
-    arcs.append("text")
-      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
-      .data(keys_in_list)
-      .attr("dy", ".35em")
-      .text(function(d) { return d; });
+    var percent = Math.round(10000 * d.value / total) / 100;
+    tooltip.select('.label').html(d.value);
+    tooltip.select('.percent').html(percent + '%');
+    tooltip.style('display', 'block');
+  });
+
+
+    // arcs.append("text")
+    //   .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+    //   .data(keys_in_list)
+    //   .attr("dy", ".35em")
+    //   .text(function(d) { return d; });
+
+
+
 };
 })
+}

@@ -1,3 +1,13 @@
+body {
+  background-color: rgb(245,245,245);
+}
+
+svg {
+    border-radius: 2px;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 5px #ddd;
+}
 
 rect {
   fill: transparent;
@@ -27,7 +37,7 @@ rect {
   font-weight: bold;
   padding: 12px;
   background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: white;
   border-radius: 2px;
 }
 
@@ -94,7 +104,7 @@ stroke-linejoin: round;
   font-family:"avenir next", Arial, sans-serif;
   padding: 6px;
   background: rgba(0, 0, 0, 0.6);
-  color: #FFA500;
+  color: black;
   border-radius: 1px;
   pointer-events: none;
   }
@@ -183,4 +193,61 @@ stroke-linejoin: round;
 
 .bar:hover {
   fill: brown;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* #piechart {
+    position: relative; /* To allow the tooltip to be positioned relative to the div */
+    display: block;
+    width: 600px;
+    margin: 0 auto; */
+}
+.tooltip {
+    position: absolute;
+    width: 80px;
+    padding: 10px;
+    background: #eee;
+    color: #333;
+    display: none;
+    font-size: 12px;
+    text-align: center;
+    box-shadow: 0 0 5px #999;
+    z-index: 10;
 }

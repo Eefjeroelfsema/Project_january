@@ -17,7 +17,7 @@ Promise.all(requests).then(function(response) {
   var svg= d3.select("#map"),
       margin = {top:0 , right: 0, bottom: 0, left: 0},
       height = 550;
-      width = 650;
+      width = 600;
 
   // make the svg for the map
   var svg = d3.select("#map")
@@ -45,18 +45,23 @@ Promise.all(requests).then(function(response) {
   var path = d3.geoPath().projection(projection);
 
 
-  // make color range for the different percentages of gdp forecasts
   var color = d3.scaleThreshold()
-  .domain([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5])
-  .range(["FF0000","FF2222", "FF4444", "FF5555", "FF6666","FF7777", "FF8888", "FF9999", "FFCCCC", "FFCCCC", "FFEEEE", "DDFFDD", "BBFF44", "99FF99", "77FF77", "55FF55", "00FF00"])
+  .domain(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
+  .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#fa8072','#fc8863','#fe9742','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
 
   map(svg, data, dataset, '1995', height, width, margin, color, tip, path);
   makeText(svg,'1995')
+
+  d3.selectAll("path")
+    .on("click", function(d) {
+      barChartFunction('1995', d.id, 'True')
+      modal.style.display = "block";    })
 
   // Setting slider
   var dataTime = d3.range(0, 23).map(function(d) {
       return new Date(1995 + d, 10, 3);
     });
+
 
   var sliderTime = d3
     .sliderBottom()
@@ -66,9 +71,14 @@ Promise.all(requests).then(function(response) {
     .width(750)
     .tickFormat(d3.timeFormat('%Y'))
       .on('onchange', val => {
+        val_variable = val
         updateMap(svg, data, dataset, val, height, width, margin, color, tip, path)
         makeText(svg,val.getFullYear())
         d3.select('#mapyear').text(d3.timeFormat('%Y')(val));
+        d3.selectAll("path")
+          .on("click", function(d) {
+            barChartFunction(val.getFullYear(), d.id, 'True')
+            modal.style.display = "block";    })
       });
 
   var gTime = d3
@@ -79,7 +89,10 @@ Promise.all(requests).then(function(response) {
     .append('g')
     .attr('transform', 'translate(30,30)');
 
+
   gTime.call(sliderTime);
+
+
 
 }).catch(function(e){
   throw(e);
@@ -128,9 +141,35 @@ function map(svg, data, dataset, year, height, width, margin, color, tip, path){
             .style("stroke-width",0.3);
         });
 
+        // var color = d3.scaleThreshold()
+        // .domain([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5])
+        // .range(['#ff0000','#ff3800','#ff5100','#ff6500','#ff7700','#ff8700','#ff9600','#ffa500','#ffa500','#e2a200','#c59e00','#a79900','#899400','#6a8e00','#458700','#008000'])
+
+    var linear = d3.scaleOrdinal()
+    .domain(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
+    .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#fa8072','#fc8863','#fe9742','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
+
+    d3.select('g')
+      .append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(10,270)");
+
+    var legendLinear = d3.legendColor()
+      .shapeWidth(20)
+      .cells(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
+      .orient('vertical')
+      .scale(linear);
+
+    svg = d3.select('g');
+
+    svg.select(".legendLinear")
+      .call(legendLinear);
+
+
 }
 
 function updateMap(svg, data, dataset, val, height, width, margin, color, tip, path){
+
 
   year = val.getFullYear()
   // // find for the year the gdp forecast values of all countries in dataset to display on the map

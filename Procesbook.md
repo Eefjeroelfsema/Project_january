@@ -118,3 +118,41 @@ The other lines dissapear and the chosen line appears.
 
 Tommorow I want to make a slider, for my barchart and piechart and I want to let the html interact with
 each other.
+
+## Day 10
+
+Today I made an interaction between my wordlmap and the specific information page, but it is not
+as handy as I wanted it to be. So I changed my plan: When you click on a country, a modal appears
+with the spendings info (which was originally on the specific info page). I will make a start with this
+next week.
+
+
+I updated my linechart as well, the axis move together with the countries you click on.
+
+## Day 11 (monday 3th week)
+
+Today I managed to add an modal to my page. I you click on a country my barchart and piechart
+visualizations appear (see picture below), I want to make them interactive with the worldmap tomorrow. Because today
+I struggled with calling functions from other javascripts, and I couldn't find it on the internet.
+
+![schermafbeelding 2019-01-22 om 14 35 29](https://user-images.githubusercontent.com/43995505/51539261-db303800-1e53-11e9-8a9d-64fdae1b5cd1.png)
+
+I deleted the specific information page, because the modal took over that function.
+
+Today I also updated my axis in my linechart (see picture). The axes move
+to the lowest and highest percentage of the historical data of that country.
+
+![schermafbeelding 2019-01-22 om 14 35 39](https://user-images.githubusercontent.com/43995505/51539313-f4d17f80-1e53-11e9-9fc8-b83bcf104e08.png)
+
+
+## Day 12
+
+Today I made my histogram interactive, if you click on the country in the worldmap,
+the modal appears and the histogram is updated to the year and country you click on! Tomorrow I want to do this for my piechart.
+
+Today I worked on making my piechart interactive, but it is dificult due to the modal.
+I will work on this tomorrow.
+
+I added my legend in the svg of the EU-map, instead of below in the page.  
+
+![schermafbeelding 2019-01-22 om 17 12 06](https://user-images.githubusercontent.com/43995505/51548568-e04bb200-1e68-11e9-8e70-2f550d015b90.png)
