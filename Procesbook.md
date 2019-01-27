@@ -156,3 +156,31 @@ I will work on this tomorrow.
 I added my legend in the svg of the EU-map, instead of below in the page.  
 
 ![schermafbeelding 2019-01-22 om 17 12 06](https://user-images.githubusercontent.com/43995505/51548568-e04bb200-1e68-11e9-8e70-2f550d015b90.png)
+
+## Day 13
+
+Today I changed the short names of the spending sectors to the full names, stated by the OECD. Because in the Barchart the
+x-axis labels were overlapping, I rotated these axis labels. The hight of the svg is not high enough,
+so I have to make that prettier. See picture below. 
+
+![schermafbeelding 2019-01-27 om 17 05 28](https://user-images.githubusercontent.com/43995505/51803874-2aaea380-225a-11e9-8317-66baf64371ce.png)
+
+In my piechart I made a hoover, such that when you hover over the charts in the piecharts, they become bigger.
+In the middle of the piechart I added the title Aut (Austria) and the year. I also added the
+percentage of the sector you hoover over in the middle. See picture below.
+
+![schermafbeelding 2019-01-27 om 17 05 48](https://user-images.githubusercontent.com/43995505/51803863-fe932280-2259-11e9-9e33-8270a2794d1a.png)
+
+The piechart is not interactive yet, it is always the same. I want to make it interactive, that if you change the year/
+cick on a country, the piechart in the modal is updated to that country. When my piechart is updated,
+I will also work on changing the name and the year in the middle of the chart. This I will work on friday.
+
+
+
+## Day 14
+Hackaton
+
+## Day 15
+
+Today I updated my piechart, if you click on the country the piechart updates according to the year
+in the slider.
