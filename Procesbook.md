@@ -161,7 +161,7 @@ I added my legend in the svg of the EU-map, instead of below in the page.
 
 Today I changed the short names of the spending sectors to the full names, stated by the OECD. Because in the Barchart the
 x-axis labels were overlapping, I rotated these axis labels. The hight of the svg is not high enough,
-so I have to make that prettier. See picture below. 
+so I have to make that prettier. See picture below.
 
 ![schermafbeelding 2019-01-27 om 17 05 28](https://user-images.githubusercontent.com/43995505/51803874-2aaea380-225a-11e9-8317-66baf64371ce.png)
 
@@ -184,3 +184,17 @@ Hackaton
 
 Today I updated my piechart, if you click on the country the piechart updates according to the year
 in the slider.
+
+## Day 16 (monday 4th week)
+
+Today I made some small changes, that made my page better. First of all I fixed the x-axis in my barchart.
+The labels are easier to read because I rotated them 40 degrees, and adjusted the marginbottom.
+
+I changed the colors of my piechart. I added better titles to my data visualisations.
+In the middle of the piechart I changed the country tickers to full names. I added the year below in smaller
+letters and if you hoover over the charts you can still see the sector and it's percentage.
+
+Today I added the legend in my map again, it had suddenly disapeared. I made the slider below the map
+the same width and length. Now it looks like it belongs to each other.
+
+In my script I added comments.

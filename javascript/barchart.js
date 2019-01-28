@@ -2,19 +2,20 @@ var barChartFunction;
 
 function makeBarchart(){
   // var data = 'data.json'
-  var data = 'data_distribution.json'
+  var data = '../data/data_distribution.json'
 
   var requests = [d3.json(data)]
   var format = d3.format(",");
 
 
   Promise.all(requests).then(function(response) {
-    function barchart(year, countryk, update){
+
+    function barchart(year, countryk, update, fullname){
       // deinfe margin, h and w of svg for the map
       var svg = d3.select("#piechart"),
-          margin = {top:10 , right: 10, bottom: 60, left: 50},
-          height = 425;
-          width = 675;
+          margin = {top:10 , right: 10, bottom: 120, left: 50},
+          height = 500;
+          width = 600;
 
       barPadding = 1;
 
@@ -29,7 +30,7 @@ function makeBarchart(){
 
       if (update == 'False'){
         bar_chart(response[0], countryk, year, svg, x_scale, y_scale, height, width, margin, barPadding)
-        make_titles(svg, height, width, margin)
+        // make_titles(svg, height, width, margin)
         // makeAxis(response[0], svg, countryk, x_scale, y_scale, height, width, margin)
       }
       else{
@@ -127,9 +128,8 @@ function makeBarchart(){
          .call(x_axis)
 
       svg.selectAll("text")
-         .attr("y", 0)
-         .attr("x", 9)
-         .attr("transform", "rotate(90)")
+         .style("text-anchor", "start")
+         .attr("transform", "rotate(40)")
 
       // add scales to y-axis
      var y_axis = d3.axisLeft()
@@ -159,14 +159,15 @@ function makeBarchart(){
       var x_axis = d3.axisBottom()
           .scale(xScale)
 
-      // append group and insert axis
-      svg.append("g")
-         .attr("transform", "translate(" + margin.left + ", " + (h - margin.bottom) + ")")
+      // // append group and insert axis
+      // svg.append("g")
 
-      svg.selectAll("text")
-        .attr('font-size', '0.3em')
-         .attr("transform", "rotate(90)")
-         .call(x_axis)
+      //
+      // svg.selectAll("text")
+      //    .attr("transform", "translate(" + 10+  margin.left + ", " + (h) + ")")
+      //    .attr('font-size', '0.3em')
+      //    .attr("transform", "rotate(90)")
+      //    .call(x_axis)
 
       // add scales to y-axis
       var y_axis = d3.axisLeft()

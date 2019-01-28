@@ -2,13 +2,13 @@ var pieChartfunction;
 
 function makePiechart(){
 
-  var data = 'data_distribution.json'
+  var data = '../data/data_distribution.json'
   var format = d3.format(",");
   var request = [d3.json(data)]
 
   var width = 425,
-      height = 425,
-      radius = (height) / 2;
+      height = 500,
+      radius = (width) / 2;
 
   var vis = d3.select("#piechart")
       .append("svg:svg")              //create the SVG element inside the <body>
@@ -19,21 +19,21 @@ function makePiechart(){
       .attr("class", 'piech1')
 
   Promise.all(request).then(function(response) {
-    function piechart(year, country, update){
+    function piechart(year, country, update, fullname){
 
       var arc = d3.arc()              //this will create <path> elements for us using arc data
-          .innerRadius(70)
+          .innerRadius(80)
           .outerRadius(radius*0.9)
 
       var arc2 = d3.arc()
-          .innerRadius(70)
+          .innerRadius(80)
           .outerRadius(radius)
 
       var pie = d3.pie()           //this will create arc data for us given a list of values
           .sort(null)
           .value(function(d) { return d; });
 
-      var color = ["Aqua","BlueViolet","Chocolate", "Crimson", "Darkgreen", "DarkSlateGray", "LightCoral", "#e78ac3","#a6d854","#ffd92f"];
+      var color = ['#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabebe'];
 
       var data = response[0]
       data_in_list = []
@@ -44,16 +44,17 @@ function makePiechart(){
           data_in_list.push(parseFloat(data[country][year][key]))
       }});
 
+      console.log(fullname)
 
       if(update == 'False'){
-          make_piechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color)
+          make_piechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color, fullname)
       }
       else{
-          updatePiechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color)
+          updatePiechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color, fullname)
       }
       // updatePiechart(response[0], country, year, vis, width, height, radius, arc, pie, color, arcs)
     }
-    function make_piechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color){
+    function make_piechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color, fullname){
 
       keys_in_list = []
       data_in_list = []
@@ -114,7 +115,7 @@ function makePiechart(){
          .attr("text-anchor", "middle")
          .attr('font-size', '0.8em')
          .attr("class", 'percentage')
-         .attr('y', 0)
+         .attr('y', 20)
          .text(keys_in_list[i] + percent + '%');
          })
          .on('mouseout', function(d,i){
@@ -128,10 +129,17 @@ function makePiechart(){
          .attr("text-anchor", "middle")
          .attr('font-size', '1.5em')
          .attr('y', -25)
-         .text(country + year);
+         .text(fullname);
+
+     vis.append("text")
+        .attr("class", "countrytext")
+        .attr("text-anchor", "middle")
+        .attr('font-size', '1.2em')
+        .attr('y', -5)
+        .text(year);
 
     }
-    function updatePiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color){
+    function updatePiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color,fullname){
 
       keys_in_list = []
       data_in_list = []
@@ -193,7 +201,7 @@ function makePiechart(){
          .attr("text-anchor", "middle")
          .attr('font-size', '0.8em')
          .attr("class", 'percentage')
-         .attr('y', 0)
+         .attr('y', 20)
          .text(keys_in_list[i] + percent + '%');
          })
          .on('mouseout', function(d,i){
@@ -207,12 +215,19 @@ function makePiechart(){
          .attr("text-anchor", "middle")
          .attr('font-size', '1.5em')
          .attr('y', -25)
-         .text(country + year);
+         .text(fullname);
+
+     vis.append("text")
+        .attr("class", "countrytext")
+        .attr("text-anchor", "middle")
+        .attr('font-size', '1.2em')
+        .attr('y', -5)
+        .text(year);
     }
     function arcTween(a) {
       var radius = 425/2
       var arc = d3.arc()              //this will create <path> elements for us using arc data
-          .innerRadius(70)
+          .innerRadius(80)
           .outerRadius(radius*0.9)
 
       var i = d3.interpolate(this._current, a);
@@ -221,7 +236,7 @@ function makePiechart(){
           return arc(i(t));
       };
     }
-    piechart('1995', 'AUT', 'False')
+    piechart('1995', 'AUT', 'False', 'Austria')
     pieChartfunction = piechart
   }).catch(function(e){
     throw(e);

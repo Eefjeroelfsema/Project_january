@@ -1,6 +1,6 @@
 function makeLinechart() {
 
-  var data = 'data.json'
+  var data = '../data/data.json'
   var format = d3.format(",");
   var request = [d3.json(data)]
 
@@ -58,7 +58,7 @@ function makeLinechart() {
         var u = d3.select('#linechart')
             .selectAll('path', 'circle')
             .data(response[0][i]);
-
+  
         u.exit().remove();
         }
 
