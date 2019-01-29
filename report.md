@@ -62,6 +62,26 @@ like it. I removed the circles.
 In my proposal and design document I wanted to make a specific html-page, where you can click on an country
 in the worldmap and it displays extra information. I implemented this, but it wasn't user friendly. Because everytime
 you clicked on a country you were sent to a new page, that was irritating. Therefore I found a solution: the modal.
-In the modal I show my extra information, this pops up in stead of directing to a different page, and it is easy to click away. 
+In the modal I show my extra information, this pops up in stead of directing to a different page, and it is easy to click away.
 
-- Colours used in the map
+- Specific information
+As said in 'modal' above, I made a modal to display the extra information. In my design document I wasn't clear
+which extra information I wanted to display. I chose to add government spendings to this. Because, governments become
+a budget deficit by spending more than they recevie. So looking at the spendings you get a better insight in how the deficit
+became what it is. I displayed the spendings in 2 ways: the percentage of the total spendings to each sector (piechart) and the
+percentage of the GDP spent to a sector (barchart). At first I thought that the percentage of the GDP was a number
+in millions, but I found out later that it was what it is. Maybe showing these 2 visualisations of spendings
+is a bit double, but after I found out that the barchart data was in percentages in stead of millions I didn't want to
+remove it. I have thought of calculating the millions myself by multiplying the percentage of GDP by the GDP. But I couldn't
+find accurate data about the GDP, every site said something different. Therefore I did not do that.
+
+- Colours
+The purpose of these visualizations was to show the user if the countries of the EU follow the EU rules. The rule
+is that the budget deficit, must not come lower than 3%. So lower than 3% means that a country is not doing it good,
+I gave that a red color (lightred - red, how bad it's going). If the budget deficit is between -3% and 0%,
+a country is following the rules of the EU, but their still spending more money than that they receive, therefore
+I gave that the colour orange (orange (-3%) - light orange (0%)). When a country has a positive budget deficit, it means that
+they spend less money than they receive and their holding on to the rules of the EU. I gave these countries
+a green colour.  
+The colours in my piechart are just so you see the difference between sectors, the color of the sectors in the barchart
+are the same as the colour in the piechart. 
