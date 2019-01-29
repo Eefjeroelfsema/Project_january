@@ -1,6 +1,6 @@
 function makeMap() {
 
-  // var data = 'data.json'
+  // import data
   var world_countries = '../data/world_countries.json'
   var data = '../data/data.json'
 
@@ -9,10 +9,9 @@ function makeMap() {
 
   Promise.all(requests).then(function(response) {
 
+    // define data from response
     dataset = response[1]
-    console.log(response)
     data = response[0]
-    // var gdp_forecast = response[1]
 
     // deinfe margin, h and w of svg for the map
     var svg = d3.select("#map"),
@@ -20,7 +19,7 @@ function makeMap() {
         height = 550;
         width = 600;
 
-    // make the svg for the map
+    // make the svg for the map and add id: map
     var svg = d3.select("#map")
         .append("svg")
         .attr('id', 'testSVG')
@@ -28,9 +27,9 @@ function makeMap() {
         .attr("height", height)
         .append('g')
         .attr('class', 'map')
-        .attr('transform', 'translate(20, 0)');
+        .attr('transform', 'translate(50, 0)');
 
-    // Set tooltips
+    // Set tooltip
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
@@ -38,36 +37,38 @@ function makeMap() {
           return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Budget deficit in % of GDP: </strong><span class='details'>"  + format(d.deficit) + "<br></span>";
         });
 
-    var path = d3.geoPath();
-
+    // zoom in on the worldmap
     var projection = d3.geoMercator()
         .scale(450)
         .translate([width / 3.5, height/0.7]);
 
+    // call the zoom in the map
     var path = d3.geoPath().projection(projection);
 
+    // define colors of the countries in worldmap, by their budget deficit
     var color = d3.scaleThreshold()
         .domain(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
         .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ff7e00','#ff8d00','#ff9900','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
 
-
+    // call function map and add the year in the svg
     map(svg, data, dataset, '1995', height, width, margin, color, tip, path);
     makeText(svg,'1995')
 
-
+    // make click-on fucntion
     d3.selectAll("path")
       .on("click", function(d) {
-        console.log(d.properties['name'])
+        // when on-click, update piechart and barchart
         pieChartfunction('1995', d.id, 'True', d.properties['name'])
         barChartFunction('1995', d.id, 'True', d.properties['name'])
+        // open modal
         modal.style.display = "block";    })
 
-    // Setting slider
+    // setting slider
     var dataTime = d3.range(0, 22).map(function(d) {
         return new Date(1995 + d, 10, 3);
       });
 
-
+    // make slider, add specifics
     var sliderTime = d3
         .sliderBottom()
         .min(d3.min(dataTime))
@@ -76,17 +77,21 @@ function makeMap() {
         .width(550)
         .tickFormat(d3.timeFormat('%Y'))
         .on('onchange', val => {
+          // when slider is slided, update map with the new information + adjust year in svg
           updateMap(svg, data, dataset, val, height, width, margin, color, tip, path)
           makeText(svg,val.getFullYear())
           d3.select('#mapyear').text(d3.timeFormat('%Y')(val));
+          // difine on click function when slider is slided
           d3.selectAll("path")
             .on("click", function(d) {
+              // update piechartfunction and barchart in the modal
               pieChartfunction(val.getFullYear(), d.id, 'True', d.properties['name'])
               barChartFunction(val.getFullYear(), d.id, 'True', d.properties['name'])
               modal.style.display = "block";
             })
           });
 
+    // add slider to svg, dfine width and hight
     var gTime = d3
         .select('div#slider-time')
         .append('svg')
@@ -95,8 +100,9 @@ function makeMap() {
         .append('g')
         .attr('transform', 'translate(20,20)');
 
-
+    // call slider
     gTime.call(sliderTime);
+
 
     }).catch(function(e){
     throw(e);
@@ -108,12 +114,12 @@ function makeMap() {
 
     svg.call(tip);
 
-     // // find for the year the gdp forecast values of all countries in dataset to display on the map
+     // find the country and budget deficit for the specific year
     deficit_byID = {}
     dataset.forEach(function(d) { deficit_byID[d['country']] = +d[year]; });
     data.features.forEach(function(d) { d.deficit = deficit_byID[d.id] });
 
-      // start drawing the map with the data
+    // draw the map
     svg.append("g")
        .attr("class", "countries")
        .attr('transform', 'translate(0, 32)')
@@ -121,7 +127,7 @@ function makeMap() {
        .data(data.features)
        .enter().append("path")
        .attr("d", path)
-        // determine gdp color per country
+        // determine color per country based on the budget deficit that year
        .style("fill", function(d) { return color(deficit_byID[d.id])})
        .style('stroke', 'white')
        .style('stroke-width', 1.5)
@@ -130,6 +136,7 @@ function makeMap() {
        .style("stroke","white")
        .style('stroke-width', 0.3)
        .on('mouseover',function(d){
+          // add tooltip
           tip.show(d);
           d3.select(this)
             .style("opacity", 1)
@@ -145,60 +152,41 @@ function makeMap() {
           .style("stroke-width",0.3);
         });
 
+    // add range and domain for legend
+    var linear = d3.scaleOrdinal()
+        .domain(["<-10","-10 : -9","-9-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
+        .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ff7e00','#ff8d00','#ff9900','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
 
-  var linear = d3.scaleOrdinal()
-      .domain(["<-10","-10 : -9","-9-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
-      .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ff7e00','#ff8d00','#ff9900','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
+    // append g in svg for legend
+    d3.select('#testSVG')
+      .append("g")
+      .attr("class", "legendLinear")
+      .attr("transform", "translate(10,200)");
 
-  d3.select('#testSVG')
-    .append("g")
-    .attr("class", "legendLinear")
-    .attr("transform", "translate(10,200)");
+    var legendLinear = d3.legendColor()
+      .shapeWidth(25)
+      .orient('vertical')
+      .scale(linear);
 
-  var legendLinear = d3.legendColor()
-    .shapeWidth(25)
-    .cells([0,1,5,10,50,100,250,500,1000,2500,3500])
-    .orient('vertical')
-    .scale(linear);
+    svg = d3.select('#testSVG');
 
-  svg = d3.select('#testSVG');
+    // add legend in svg
+    svg.select(".legendLinear")
+      .call(legendLinear);
 
-  svg.select(".legendLinear")
-    .call(legendLinear);
-
-
-    //
-    // // d3.select('g')
-    // //   .append("g")
-    // //   .attr("class", "legendLinear")
-    // //   .attr("transform", "translate(10,270)");
-    //
-    // var legendLinear = d3.legendColor()
-    //     .shapeWidth(25)
-    //     .cells(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
-    //     .orient('vertical')
-    //     .scale(linear);
-    //
-    // // svg = d3.select('g');
-    //
-    // k = d3.select("#map")
-    //
-    // console.log(legendLinear);
-    //
-    // k.call(legendLinear)
-
-
-      }
+    }
 
   function updateMap(svg, data, dataset, val, height, width, margin, color, tip, path){
 
+    // get fullyear from val
     year = val.getFullYear()
-    // // find for the year the gdp forecast values of all countries in dataset to display on the map
+
+    // find the country and budget deficit for the specific year
     deficit_byID = {}
     dataset.forEach(function(d) { deficit_byID[d['country']] = +d[year]; });
     data.features.forEach(function(d) { d.deficit = deficit_byID[d.id] });
 
-    // start drawing the map with the data
+    // draw the map with new data
     svg.append("g")
        .attr("class", "countries")
        .attr('transform', 'translate(0, 32)')
@@ -206,7 +194,7 @@ function makeMap() {
        .data(data.features)
        .enter().append("path")
        .attr("d", path)
-        // determine gdp color per country
+       // determine color per country based on the budget deficit that year
        .style("fill", function(d) { return color(deficit_byID[d.id])})
        .style('stroke', 'white')
        .style('stroke-width', 1.5)
@@ -214,6 +202,7 @@ function makeMap() {
         // tooltips
        .style("stroke","white")
        .style('stroke-width', 0.3)
+       // add tooltip
        .on('mouseover',function(d){
           tip.show(d);
           d3.select(this)
@@ -238,7 +227,7 @@ function makeMap() {
        .attr('class', 'title')
        .remove()
 
-    // add y-as title
+    // add year to the svg
     svg.append('text')
        .attr('class', 'title')
        .attr('x', 50)

@@ -1,19 +1,23 @@
 function makeLinechart() {
 
+  // import data
   var data = '../data/data.json'
   var format = d3.format(",");
   var request = [d3.json(data)]
 
   Promise.all(request).then(function(response) {
 
+    // define data from response
     var data = response[0]
-    // deinfe margin, h and w of svg for the map
+
+    // deinfe margin, h and w of svg for the linechart
     var svg = d3.select("#linechart"),
         margin = {top:40 , right: 30, bottom: 10, left: 30},
         height = 550;
         width = 700;
+        barPadding = 1;
 
-    // make the svg for the map
+    // make the svg for the linechart
     var svg = d3.select("#linechart")
         .append("svg")
         .attr("width", width)
@@ -21,15 +25,17 @@ function makeLinechart() {
         .append('g')
         .attr('transform', 'translate(0, -0)');
 
+    // make xscale
     var x_scale = d3.scaleLinear()
         .domain([1995, 2018])
         .range([margin.left, width - margin.right]);
 
-    // make y_scale
+    // make yscale
     var y_scale = d3.scaleLinear()
         .domain([-35, 10])
        .range([height - margin.top, margin.bottom]);
 
+    // put the values of each country in a list in a dictionary under the countryname
     country_values = {}
     response[0].forEach(function(d) {
       values = []
@@ -39,18 +45,23 @@ function makeLinechart() {
         country_values[d['country']] = values;
     });
 
+    // make a list of all the years in the dataset
     years = []
     for(i = 1995; i <= 2017; i++){
       years.push(i)
     }
 
+    // make the begin axis of the linechart
     make_axis(svg, x_scale, y_scale, height, width, margin)
 
+    // for each country in the dataset, draw the historical budget deficit line
     for(i = 0 ; i <= 22; i++){
+      // find the countryname and give to the line
       country = response[0][i].country
       countryline(svg, x_scale, y_scale, years, country_values, country)
     }
 
+    // update function
     d3.select("#objectID").on("change", change)
       function change() {
 
@@ -58,31 +69,41 @@ function makeLinechart() {
         var u = d3.select('#linechart')
             .selectAll('path', 'circle')
             .data(response[0][i]);
-  
+
         u.exit().remove();
         }
 
+        // get value of buttonvalue
         var index = d3.select("#objectID").node().value;
 
         index = index.toString();
-
+        // if this is true, add 1 line of 1 country
         if(index!= 30){
           country = response[0][index].country
+
+          // make new y_scale, such that the y_axis can be updated
           y_scale = updateyScale(country_values[country], height, margin)
+
+          // draw the line by calling this function
           countryline(svg, x_scale, y_scale, years, country_values, country)
+
+          // add x_axis
           make_axis(svg, x_scale, y_scale, height, width, margin)
         }
+        // if index = 30, all the countrylines should be drawed
         else{
+          // make y_scale for all the countries
+          var y_scale = d3.scaleLinear()
+              .domain([-35, 10])
+              .range([height - margin.top, margin.bottom]);
+          make_axis(svg, x_scale, y_scale, height, width, margin)
+
+          // loop over all the countries in the dataset
           for(i=0; i<=22; i++){
             country = response[0][i].country
 
-            // make y_scale
-            var y_scale = d3.scaleLinear()
-                .domain([-35, 10])
-                .range([height - margin.top, margin.bottom]);
-
+            // draw the line of the country you loop over
             countryline(svg, x_scale, y_scale, years, country_values, country)
-            make_axis(svg, x_scale, y_scale, height, width, margin)
           }
         }
       }
@@ -99,33 +120,25 @@ function makeLinechart() {
 
   function countryline(svg, x_scale, y_scale, years, country_values, specific_country){
 
+    // make variable line
     var line = d3.line()
         .x(function(d, i) { return x_scale(years[i]); }) // set the x values for the line generator
         .y(function(d) { return y_scale(d); }) // set the y values for the line generator
         .curve(d3.curveMonotoneX) // apply smoothing to the line
 
-    var tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .offset([-10, 0])
-        .html(function(d) {
-          return "<strong>Country: </strong><span class='details'>" + specific_country + "<br></span>" + "<strong>Budget deficit in %: </strong><span class='details'>"  +  + "<br></span>" + "<strong>Year: </strong><span class='details'>" + years[i] + "<br></span>";
-        })
-
-    svg.call(tip);
-
-
+    // add line to svg with correct data
     svg.append("path")
        .datum(country_values[specific_country]) // 10. Binds data to the line
        .attr("class", "line") // Assign a class for styling
        .style("stroke", "SlateGrey")
        .attr("d", line) // 11. Calls the line generator
+       // when mouse is on the line, turn red
        .on('mouseover', function (d, i) {
          d3.select(this)
            .style("stroke", "Red")
-         tip.show
       })
+      // when mouse leaves the line, turn grey again
       .on('mouseout', function (d) {
-        tip.hide(d)
         d3.select(this)
           .style("stroke", "SlateGrey")
       })
@@ -158,11 +171,9 @@ function makeLinechart() {
   }
   function updateyScale(country_values, height, margin){
 
+    // define minimum and maximum of the dataset
     var minimum = Math.min(...country_values)
     var maximum = Math.max(...country_values)
-
-    console.log(minimum)
-    console.log(maximum)
 
     // make y_scale
     var y_scale = d3.scaleLinear()

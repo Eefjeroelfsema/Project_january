@@ -1,43 +1,46 @@
 var barChartFunction;
 
 function makeBarchart(){
-  // var data = 'data.json'
-  var data = '../data/data_distribution.json'
 
+  // import data
+  var data = '../data/data_distribution.json'
   var requests = [d3.json(data)]
   var format = d3.format(",");
 
 
   Promise.all(requests).then(function(response) {
 
+    // overal function barchart, which kan be called from the map javascript
     function barchart(year, countryk, update, fullname){
+
       // deinfe margin, h and w of svg for the map
       var svg = d3.select("#piechart"),
           margin = {top:10 , right: 10, bottom: 120, left: 50},
           height = 500;
           width = 600;
 
-      barPadding = 1;
-
+      // make x scale
       var x_scale = d3.scaleLinear()
           .domain([0, 10])
           .range([margin.left, width - margin.right]);
 
-      // make y_scale
+      // make y scale
       var y_scale = d3.scaleLinear()
           .domain([0, 30])
           .range([height - margin.bottom, margin.top]);
 
+      // if update, given when the function is calles, is False. First barchart is made
       if (update == 'False'){
+        // bar_chart function is called
         bar_chart(response[0], countryk, year, svg, x_scale, y_scale, height, width, margin, barPadding)
-        // make_titles(svg, height, width, margin)
-        // makeAxis(response[0], svg, countryk, x_scale, y_scale, height, width, margin)
       }
+      // if update is True, a barchart is already made and now updated with different data
       else{
         updateBarchart(response[0], countryk, year, svg, x_scale, y_scale, height, width, margin, barPadding)
       }
-
+    }
     function bar_chart(data, country_id, year, svg, x_scale, y_scale, h, w, margin, barPadding){
+
       // make the svg for the map
       var svg = d3.select("#piechart")
           .append("svg")
@@ -46,20 +49,16 @@ function makeBarchart(){
           .append('g')
           .attr('transform', 'translate(0, -0)');
 
-      // make tip for interactivity feature
-      var tip = d3.tip()
-          .attr('class', 'd3-tip')
-          .offset([-10, 0])
-          .html(function(d, i) {
-          return "<strong>Suicide rate:</strong> <span style='color:red'>" + d + "</span>";
-          })
-
+      // make lists to put data in and sectornames
       key_in_list = []
       data_in_list = []
 
+      // put the data specific for that country and year in a list
       Object.keys(data[country_id][year]).forEach(function(key) {
         if(key!= "TOT"){
           data_in_list.push(Number(data[country_id][year][key]))
+
+          // change short names to full names of the sectors
           if (key == "GRALPUBSER"){
             keys_in_list.push("General public services")
           }
@@ -93,8 +92,7 @@ function makeBarchart(){
         }
       });
 
-      svg.call(tip)
-      // built barchart
+      // make barchart
       svg.selectAll(".bar")
          .data(data_in_list)
          .enter()
@@ -104,16 +102,14 @@ function makeBarchart(){
            return x_scale(i)
          })
          .attr("y", function(d) {
-           return y_scale(d) //Height minus data value
+           return y_scale(d)
          })
          .attr("width", (w - margin.left - margin.right) / (10) )
          .attr("height", function(d) {
            return (h - margin.bottom - y_scale(d));
          })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
 
-
+      // add sectors under the x-axis
       const xScale = d3.scaleBand()
             .range([0, w-margin.left - margin.right])
             .domain(keys_in_list.map((s) => s))
@@ -127,60 +123,24 @@ function makeBarchart(){
          .attr("transform", "translate(" + margin.left + ", " + (h- margin.bottom) + ")")
          .call(x_axis)
 
+      // rotate the labels in the x-axis
       svg.selectAll("text")
          .style("text-anchor", "start")
          .attr("transform", "rotate(40)")
 
-      // add scales to y-axis
+     // add scales to y-axis
      var y_axis = d3.axisLeft()
          .scale(y_scale);
 
-      // append group and insert axis
+    // append group and insert axis
     svg.append("g")
        .attr("transform", "translate(" + margin.left + "," + 0 + ")")
        .call(y_axis);
 
     }
-
-    function makeAxis(data, svg, country_id, x_scale, y_scale, h, w, margin){
-
-      key_in_list = []
-      Object.keys(data[country_id][year]).forEach(function(key) {
-        if(key!= "TOT"){
-        key_in_list.push(key)
-      }
-      });
-
-      const xScale = d3.scaleBand()
-            .range([0, w-margin.left - margin.right])
-            .domain(key_in_list.map((s) => s))
-
-      // add scales to x-axis
-      var x_axis = d3.axisBottom()
-          .scale(xScale)
-
-      // // append group and insert axis
-      // svg.append("g")
-
-      //
-      // svg.selectAll("text")
-      //    .attr("transform", "translate(" + 10+  margin.left + ", " + (h) + ")")
-      //    .attr('font-size', '0.3em')
-      //    .attr("transform", "rotate(90)")
-      //    .call(x_axis)
-
-      // add scales to y-axis
-      var y_axis = d3.axisLeft()
-          .scale(y_scale);
-
-      // append group and insert axis
-      svg.append("g")
-         .attr("transform", "translate(" + margin.left + "," + 0 + ")")
-         .call(y_axis);
-    }
     function make_titles(svg, h, w, margin, name){
 
-      // add scatterplot title
+      // add title title
       svg.append('text')
          .attr('class', 'title')
          .attr('x', w / 2)
@@ -218,7 +178,7 @@ function makeBarchart(){
 
       var bars = svg.selectAll(".bar").data(data_in_list)
 
-      // Add bars for new data
+      // update barchart with new data
       bars.enter()
           .append("rect")
           .attr("class", "bar")
@@ -233,7 +193,8 @@ function makeBarchart(){
             return (h - margin.bottom - y_scale(d));
           })
 
-      // Update old ones, already have x / width from before
+          // make the update look smooth with a transistion and attrTween
+
       bars.transition().duration(1500)
           .attr("y", function(d) {
             return y_scale(d) //Height minus data value
@@ -261,7 +222,7 @@ function makeBarchart(){
       return y_scale
 
     }
-  }
+
   barchart('1995', 'AUT', 'False')
   barChartFunction = barchart;
   }).catch(function(e){
