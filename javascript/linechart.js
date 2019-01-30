@@ -52,11 +52,11 @@ function makeLinechart() {
     }
 
     // make the begin axis of the linechart
-    make_axis(svg, xScale, yScale, height, width, margin)
+    makeAxis(svg, xScale, yScale, height, width, margin)
 
     // for each country in the dataset, draw the historical budget deficit line
     for(i = 0 ; i <= 22; i++){
-      // find the countryname and give to the line
+      // find the countryname and draw to the line
       country = response[0][i].country
       countryline(svg, xScale, yScale, years, countryValues, country)
     }
@@ -75,33 +75,32 @@ function makeLinechart() {
 
         // get value of buttonvalue
         var index = d3.select("#objectID").node().value;
-
+        // make a string of index
         index = index.toString();
+
         // if this is true, add 1 line of 1 country
         if(index!= 30){
           country = response[0][index].country
-
           // make new yScale, such that the y_axis can be updated
           yScale = updateyScale(countryValues[country], height, margin)
-
           // draw the line by calling this function
           countryline(svg, xScale, yScale, years, countryValues, country)
-
           // add x_axis
-          make_axis(svg, xScale, yScale, height, width, margin)
+          makeAxis(svg, xScale, yScale, height, width, margin)
         }
+
         // if index = 30, all the countrylines should be drawed
         else{
           // make yScale for all the countries
           var yScale = d3.scaleLinear()
               .domain([-35, 10])
               .range([height - margin.top, margin.bottom]);
-          make_axis(svg, xScale, yScale, height, width, margin)
+          // draw the axis with the old yscale
+          makeAxis(svg, xScale, yScale, height, width, margin)
 
           // loop over all the countries in the dataset
           for(i=0; i<=22; i++){
             country = response[0][i].country
-
             // draw the line of the country you loop over
             countryline(svg, xScale, yScale, years, countryValues, country)
           }
@@ -117,6 +116,16 @@ function makeLinechart() {
   })
 
   function countryline(svg, xScale, yScale, years, countryValues, specificCountry){
+    /**
+     This Function draws lines of historical budget deficit data.
+     Parameters:
+     - svg
+     - xScale
+     - yScale
+     - years: list of years in dataset
+     - countryValues: list of historical budget deficit data of specific country
+     - specificCountry: id of the country you want to draw the line from
+     */
 
     // make variable line
     var line = d3.line()
@@ -150,7 +159,15 @@ function makeLinechart() {
       })
 
   }
-  function make_axis(svg, xScale, yScale, h, w, margin) {
+  function makeAxis(svg, xScale, yScale, h, w, margin) {
+    /**
+     This Function makes the axis of the linechart
+     Parameters:
+     - svg
+     - xScale
+     - yScale
+     - h(eight), w(idth), margin of svg
+     */
 
     // remove titles from previous scatterplot
     svg.selectAll('g')
@@ -176,6 +193,13 @@ function makeLinechart() {
 
   }
   function updateyScale(countryValues, height, margin){
+    /**
+     This Function changes the yScale with the maximum and minimum of the data
+     Parameters:
+     - countryValues: list of historical budget deficit data of specific country
+     - height and margin of svg
+     */
+
 
     // define minimum and maximum of the dataset
     var minimum = Math.min(...countryValues)
@@ -190,8 +214,13 @@ function makeLinechart() {
 
   }
   function fullnameCountry(countryname){
+    /**
+     This Function changes the short id names of countries to their full names
+     Parameters:
+     - countryname: the id countryname
+     */
 
-    // this function makes of short names, full countrynames
+    // change short names to full countrynames
     if (countryname == 'AUT'){
       return 'Austria'
     }

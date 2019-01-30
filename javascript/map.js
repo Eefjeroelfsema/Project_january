@@ -52,16 +52,20 @@ function makeMap() {
 
     // call function map and add the year in the svg
     map(svg, data, dataset, '1995', height, width, margin, color, tip, path);
+    // put year in the left top corner of the svg
     makeText(svg,'1995')
 
     // make click-on fucntion
     d3.selectAll("path")
       .on("click", function(d) {
+        // there is no data of Romenia, Croatia, Bulgaria and Cyprus
+        if(d.id != 'ROU' && d.id != 'HRV' && d.id != 'CYP' && d.id != 'BGR'){
         // when on-click, update piechart and barchart
         pieChartfunction('1995', d.id, 'True', d.properties['name'])
         barChartFunction('1995', d.id, 'True', d.properties['name'])
         // open modal
-        modal.style.display = "block";    })
+        modal.style.display = "block";    }
+      })
 
     // setting slider
     var dataTime = d3.range(0, 22).map(function(d) {
@@ -79,15 +83,17 @@ function makeMap() {
         .on('onchange', val => {
           // when slider is slided, update map with the new information + adjust year in svg
           updateMap(svg, data, dataset, val, height, width, margin, color, tip, path)
+          // put year in the left top corner of the svg
           makeText(svg,val.getFullYear())
           d3.select('#mapyear').text(d3.timeFormat('%Y')(val));
           // difine on click function when slider is slided
           d3.selectAll("path")
             .on("click", function(d) {
-              // update piechartfunction and barchart in the modal
-              pieChartfunction(val.getFullYear(), d.id, 'True', d.properties['name'])
-              barChartFunction(val.getFullYear(), d.id, 'True', d.properties['name'])
-              modal.style.display = "block";
+              // there is no data of Romenia, Croatia, Bulgaria and Cyprus
+              if(d.id != 'ROU' && d.id != 'HRV' && d.id != 'CYP' && d.id != 'BGR'){
+                // update piechartfunction and barchart in the modal                pieChartfunction(val.getFullYear(), d.id, 'True', d.properties['name'])
+                barChartFunction(val.getFullYear(), d.id, 'True', d.properties['name'])
+                modal.style.display = "block";}
             })
           });
 
@@ -109,8 +115,18 @@ function makeMap() {
 
 
   function map(svg, data, dataset, year, height, width, margin, color, tip, path){
-    // this function draws the map
-
+    /**
+     This Function draws the first map, when the page is loaded.
+     Parameters:
+     - svg
+     - data: budget deficit data of countries
+     - dataset: country map information
+     - year: start year '1995'
+     - height, widht, margin of the svg
+     - color: which budget deficit gets which colour
+     - tooltip
+     - path: how is the map zoomed in
+     */
 
     svg.call(tip);
 
@@ -176,6 +192,18 @@ function makeMap() {
 
     }
   function updateMap(svg, data, dataset, val, height, width, margin, color, tip, path){
+    /**
+     This Function updates the map when the slider is slided.
+     Parameters:
+     - svg
+     - data: budget deficit data of countries
+     - dataset: country map information
+     - year: which the slider returns (val data)
+     - height, widht, margin of the svg
+     - color: which budget deficit gets which colour
+     - tooltip
+     - path: how is the map zoomed in
+     */
 
     // get fullyear from val
     year = val.getFullYear()
@@ -220,7 +248,13 @@ function makeMap() {
 
     }
   function makeText(svg,year){
-    // remove titles from previous scatterplot
+    /**
+     This Function puts the year in the left corner of the svg:
+     - svg
+     - year: the year the slider returns
+     */
+
+    // remove year from previous map update
     svg.selectAll('text')
        .attr('class', 'title')
        .remove()

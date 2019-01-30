@@ -22,8 +22,15 @@ function makePiechart(){
       .attr("class", 'piech1')
 
   Promise.all(request).then(function(response) {
-    // overal function piechart, which kan be called from the map javascript
     function piechart(year, country, update, fullname){
+      /**
+       This Function can be called from the maps javascript and controlles all the other functions
+       Parameters:
+       - year: the year of which the barchart should be drawed
+       - countryk: the country of which the barchart should be drawd
+       - update: if its false, the first piechart should be drawn, if true the piechart should be updated
+       - fullname: fullcountryname
+       */
 
       // get data from response
       var data = response[0]
@@ -56,6 +63,19 @@ function makePiechart(){
       }
     }
     function firstPiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color, fullname){
+      /**
+       This Function draws the first barchart
+       Parameters:
+       - data: all the spendings data
+       - country: id of the country the barchart is drawn of, first piechart always Austria
+       - year: the year of which the barchart should be drawed
+       - vis (svg)
+       - height, width and radius of svg
+       - pie
+       - arc1 en arc2
+       - color: color for each sector (same as piechart)
+       - fullname: fullname of country
+       */
 
       // make lists to put data in and sectornames
       keyList = ['Defence', 'Health', "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education", "Defence", "Health", "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education"]
@@ -130,6 +150,19 @@ function makePiechart(){
 
     }
     function updatePiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color,fullname){
+      /**
+       This Function draws the first piechart
+       Parameters:
+       - data: all the spendings data
+       - country: id of the country the barchart is drawn of, first piechart always Austria
+       - year: the year of which the barchart should be drawed
+       - vis (svg)
+       - height, width and radius of svg
+       - pie
+       - arc1 en arc2
+       - color: color for each sector (same as piechart)
+       - fullname: fullname of country
+       */
 
       // make lists to put data in and sectornames from the update
       keyList = ['Defence', 'Health', "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education", "Defence", "Health", "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education"]
@@ -202,6 +235,10 @@ function makePiechart(){
         .text(year);
     }
     function arcTween(a) {
+      /**
+       This Function makes sure the piechart slowely updates
+       */
+      // define radius and arc
       var radius = 425/2
       var arc = d3.arc()              //this will create <path> elements for us using arc data
           .innerRadius(90)

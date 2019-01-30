@@ -8,10 +8,16 @@ function makeBarchart(){
   var requests = [d3.json(data)]
   var format = d3.format(",");
 
-
   Promise.all(requests).then(function(response) {
-    // overal function barchart, which kan be called from the map javascript
     function barchart(year, countryk, update, fullname){
+      /**
+       This Function can be called from the maps javascript and controlles all the other functions
+       Parameters:
+       - year: the year of which the barchart should be drawed
+       - countryk: the country of which the barchart should be drawd
+       - update: if its false, the first barchart should be drawn, if true the barchart should be updated
+       - fullname: fullcountryname
+       */
 
       // deinfe margin, h and w of svg for the map
       var svg = d3.select("#piechart"),
@@ -42,7 +48,20 @@ function makeBarchart(){
         updateBarchart(response[0], countryk, year, svg, xScale, yScale, height, width, margin, barPadding, color)
       }
     }
-    function firstBarchart(data, country_id, year, svg, xScale, yScale, h, w, margin, barPadding, color){
+    function firstBarchart(data, countryID, year, svg, xScale, yScale, h, w, margin, barPadding, color){
+      /**
+       This Function draws the first barchart
+       Parameters:
+       - data: all the spendings data
+       - countryID: id of the country the barchart is drawn of, first barchart always Austria
+       - year: the year of which the barchart should be drawed
+       - svg
+       - xScale
+       - yScale
+       - h(eight), w(idth) and margin of svg
+       - barPadding
+       - color: color for each sector (same as piechart)
+       */
 
       // make the svg for the map
       var svg = d3.select("#piechart")
@@ -56,12 +75,12 @@ function makeBarchart(){
       dataList = []
 
       // put the data specific for that country and year in a list
-      Object.keys(data[country_id][year]).forEach(function(key) {
+      Object.keys(data[countryID][year]).forEach(function(key) {
         if(key!= "TOT"){
-          dataList.push(Number(data[country_id][year][key]));
+          dataList.push(Number(data[countryID][year][key]));
         }
         else {
-          total = data[country_id][year][key];
+          total = data[countryID][year][key];
         }
       });
 
@@ -105,59 +124,25 @@ function makeBarchart(){
          makeText(svg, h, w, margin, total)
 
     }
-    function makeAxis(svg, h, w, margin, yScale){
-
-      keyList = keyList()
-
-      // add sectors under the x-axis
-      const xScale = d3.scaleBand()
-            .range([0, w-margin.left - margin.right])
-            .domain(keyList.map((s) => s))
-
-      // add scales to x-axis
-      var xAxis = d3.axisBottom()
-          .scale(xScale)
-
-      // append group and insert axis
-      svg.append("g")
-         .attr("class", 'axistext')
-         .attr("transform", "translate(" + margin.left + ", " + (h- margin.bottom) + ")")
-         .call(xAxis)
-
-      // rotate the labels in the x-axis
-      svg.selectAll("text")
-         .style("text-anchor", "start")
-         .attr("transform", "rotate(40)")
-
-     // add scales to y-axis
-     var yAxis = d3.axisLeft()
-         .scale(yScale);
-
-    // append group and insert axis
-    svg.append("g")
-       .attr("class", 'axistext')
-       .attr("transform", "translate(" + margin.left + "," + 0 + ")")
-       .call(yAxis);
-
-    }
-    function makeText(svg, h, w, margin, total){
-
-      // add total spendings in top of the barchart
-      svg.append('text')
-         .attr('class', 'title')
-         .attr('x', 90)
-         .attr('y', 40)
-         .attr('text-anchor', 'left')
-         .text('Total spend: ' + Math.round(total * 100) / 100 + '% of GDP')
-
-    }
-    function updateBarchart(data, country_id, year, svg, xScale, yScale, h, w, margin, barPadding, color){
+    function updateBarchart(data, countryID, year, svg, xScale, yScale, h, w, margin, barPadding, color){
+      /**
+       This Function updates the  barchart
+       Parameters:
+       - data: all the spendings data
+       - countryID: id of the country the barchart is drawn of, first barchart always Austria
+       - year: the year of which the barchart should be drawed
+       - svg
+       - xScale
+       - yScale
+       - h(eight), w(idth) and margin of svg
+       - barPadding
+       - color: color for each sector (same as piechart)
+       */
 
       dataList = []
-      console.log(country_id)
-      Object.keys(data[country_id][year]).forEach(function(key) {
+      Object.keys(data[countryID][year]).forEach(function(key) {
         if(key!= "TOT"){
-        dataList.push(Number(data[country_id][year][key]))
+        dataList.push(Number(data[countryID][year][key]))
       }
       });
 
@@ -196,6 +181,68 @@ function makeBarchart(){
       // makeAxis(svg, h, w, margin, yScale)
 
     };
+    function makeAxis(svg, h, w, margin, yScale){
+      /**
+       This Function makes the axis of the  barchart
+       Parameters
+       - svg
+       - yScale
+       - h(eight), w(idth) and margin of svg
+       - barPadding
+       - color: color for each sector (same as piechart)
+       */
+
+      keyLists = keyList
+
+      // add sectors under the x-axis
+      const xScale = d3.scaleBand()
+            .range([0, w-margin.left - margin.right])
+            .domain(keyLists.map((s) => s))
+
+      // add scales to x-axis
+      var xAxis = d3.axisBottom()
+          .scale(xScale)
+
+      // append group and insert axis
+      svg.append("g")
+         .attr("class", 'axistext')
+         .attr("transform", "translate(" + margin.left + ", " + (h- margin.bottom) + ")")
+         .call(xAxis)
+
+      // rotate the labels in the x-axis
+      svg.selectAll("text")
+         .style("text-anchor", "start")
+         .attr("transform", "rotate(40)")
+
+     // add scales to y-axis
+     var yAxis = d3.axisLeft()
+         .scale(yScale);
+
+    // append group and insert axis
+    svg.append("g")
+       .attr("class", 'axistext')
+       .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+       .call(yAxis);
+
+    }
+    function makeText(svg, h, w, margin, total){
+      /**
+       This Function makes the total text in the top of the  barchart
+       Parameters
+       - svg
+       - h(eight), w(idth) and margin of svg
+       - total: what the total spending percent of GDP is
+       */
+
+      // add total spendings in top of the barchart
+      svg.append('text')
+         .attr('class', 'title')
+         .attr('x', 90)
+         .attr('y', 40)
+         .attr('text-anchor', 'left')
+         .text('Total spend: ' + Math.round(total * 100) / 100 + '% of GDP')
+
+    }
 
   barchart('1995', 'AUT', 'False')
   barChartFunction = barchart;
