@@ -1,3 +1,4 @@
+// define barchartfunction, which can be called from the map script
 var barChartFunction;
 
 function makeBarchart(){
@@ -9,7 +10,6 @@ function makeBarchart(){
 
 
   Promise.all(requests).then(function(response) {
-
     // overal function barchart, which kan be called from the map javascript
     function barchart(year, countryk, update, fullname){
 
@@ -20,26 +20,29 @@ function makeBarchart(){
           width = 600;
 
       // make x scale
-      var x_scale = d3.scaleLinear()
+      var xScale = d3.scaleLinear()
           .domain([0, 10])
           .range([margin.left, width - margin.right]);
 
       // make y scale
-      var y_scale = d3.scaleLinear()
+      var yScale = d3.scaleLinear()
           .domain([0, 30])
           .range([height - margin.bottom, margin.top]);
+
+      // define colors (the same as piechart) for the sectors
+      var color = ['#845EC2','#D65DB1', '#FF9671','#FF6F91', '#FFC75F', '#F9F871', '#008F7A', '#008E9B', '#0081CF', '#C4FCEF'];
 
       // if update, given when the function is calles, is False. First barchart is made
       if (update == 'False'){
         // bar_chart function is called
-        bar_chart(response[0], countryk, year, svg, x_scale, y_scale, height, width, margin, barPadding)
+        firstBarchart(response[0], countryk, year, svg, xScale, yScale, height, width, margin, barPadding, color)
       }
       // if update is True, a barchart is already made and now updated with different data
       else{
-        updateBarchart(response[0], countryk, year, svg, x_scale, y_scale, height, width, margin, barPadding)
+        updateBarchart(response[0], countryk, year, svg, xScale, yScale, height, width, margin, barPadding, color)
       }
     }
-    function bar_chart(data, country_id, year, svg, x_scale, y_scale, h, w, margin, barPadding){
+    function firstBarchart(data, country_id, year, svg, xScale, yScale, h, w, margin, barPadding, color){
 
       // make the svg for the map
       var svg = d3.select("#piechart")
@@ -50,78 +53,76 @@ function makeBarchart(){
           .attr('transform', 'translate(0, -0)');
 
       // make lists to put data in and sectornames
-      key_in_list = []
-      data_in_list = []
+      dataList = []
 
       // put the data specific for that country and year in a list
       Object.keys(data[country_id][year]).forEach(function(key) {
         if(key!= "TOT"){
-          data_in_list.push(Number(data[country_id][year][key]))
-
-          // change short names to full names of the sectors
-          if (key == "GRALPUBSER"){
-            keys_in_list.push("General public services")
-          }
-          else if(key == "DEF"){
-            keys_in_list.push("Defence")
-          }
-          else if(key == "HEALTH"){
-            keys_in_list.push("Health")
-          }
-          else if(key == "PUBORD"){
-            keys_in_list.push("Public order and safety")
-          }
-          else if(key == "ECOAFF"){
-            keys_in_list.push("Economic affairs")
-          }
-          else if(key == "ENVPROT"){
-            keys_in_list.push("Environmental protection")
-          }
-          else if(key == "HOUCOMM"){
-            keys_in_list.push("Housing and community amenities")
-          }
-          else if(key == "SOCPROT"){
-            keys_in_list.push("Social protection")
-          }
-          else if(key == "RECULTREL"){
-            keys_in_list.push("Recreation, culture and religion")
-          }
-          else if(key == "EDU"){
-            keys_in_list.push("Education")
-          }
+          dataList.push(Number(data[country_id][year][key]));
+        }
+        else {
+          total = data[country_id][year][key];
         }
       });
 
+      makeAxis(svg, h, w, margin, yScale)
+
+      keyLists = keyList
       // make barchart
       svg.selectAll(".bar")
-         .data(data_in_list)
+         .data(dataList)
          .enter()
          .append("rect")
          .attr("class", "bar")
          .attr("x", function(d, i) {
-           return x_scale(i)
+           return xScale(i)
          })
          .attr("y", function(d) {
-           return y_scale(d)
+           return yScale(d)
          })
          .attr("width", (w - margin.left - margin.right) / (10) )
          .attr("height", function(d) {
-           return (h - margin.bottom - y_scale(d));
+           return (h - margin.bottom - yScale(d));
          })
+         .style("fill", function(d,i){
+           return color[i]
+         })
+         // add sector and percentage on top of barchart when mouseover
+         .on('mouseover', function(d,i){
+           svg.append('text')
+              .attr('class', 'sector')
+              .attr('x', 90)
+              .attr('y', 60)
+              .attr('text-anchor', 'left')
+              .text('Total spend on ' + keyList[i] + ': ' +Math.round(d * 100) / 100 + '% of GDP')
+            })
+
+          .on('mouseout', function(d,i){
+            d3.select(this)
+            svg.selectAll('.sector').remove()
+         })
+
+         makeText(svg, h, w, margin, total)
+
+    }
+    function makeAxis(svg, h, w, margin, yScale){
+
+      keyList = keyList()
 
       // add sectors under the x-axis
       const xScale = d3.scaleBand()
             .range([0, w-margin.left - margin.right])
-            .domain(keys_in_list.map((s) => s))
+            .domain(keyList.map((s) => s))
 
       // add scales to x-axis
-      var x_axis = d3.axisBottom()
+      var xAxis = d3.axisBottom()
           .scale(xScale)
 
       // append group and insert axis
       svg.append("g")
+         .attr("class", 'axistext')
          .attr("transform", "translate(" + margin.left + ", " + (h- margin.bottom) + ")")
-         .call(x_axis)
+         .call(xAxis)
 
       // rotate the labels in the x-axis
       svg.selectAll("text")
@@ -129,99 +130,72 @@ function makeBarchart(){
          .attr("transform", "rotate(40)")
 
      // add scales to y-axis
-     var y_axis = d3.axisLeft()
-         .scale(y_scale);
+     var yAxis = d3.axisLeft()
+         .scale(yScale);
 
     // append group and insert axis
     svg.append("g")
+       .attr("class", 'axistext')
        .attr("transform", "translate(" + margin.left + "," + 0 + ")")
-       .call(y_axis);
+       .call(yAxis);
 
     }
-    function make_titles(svg, h, w, margin, name){
+    function makeText(svg, h, w, margin, total){
 
-      // add title title
+      // add total spendings in top of the barchart
       svg.append('text')
          .attr('class', 'title')
-         .attr('x', w / 2)
+         .attr('x', 90)
          .attr('y', 40)
-         .attr('text-anchor', 'middle')
-         .text(name)
-
-        // add x-as title
-      svg.append('text')
-         .attr('class', 'title')
-         .attr('x', w -250)
-         .attr('y', h - 2)
-         .attr('text-anchor', 'middle')
-         .text('Sectors')
-
-      // add y-as title
-      svg.append('text')
-         .attr('class', 'title')
-         .attr('x', -150)
-         .attr('y', 20)
-         .attr("transform", "rotate(-90)")
-         .attr('text-anchor', 'middle')
-         .text('Government spendings in % of GDP')
+         .attr('text-anchor', 'left')
+         .text('Total spend: ' + Math.round(total * 100) / 100 + '% of GDP')
 
     }
-    function updateBarchart(data, country_id, year, svg, x_scale, y_scale, h, w, margin, barPadding){
+    function updateBarchart(data, country_id, year, svg, xScale, yScale, h, w, margin, barPadding, color){
 
-      data_in_list = []
+      dataList = []
       console.log(country_id)
       Object.keys(data[country_id][year]).forEach(function(key) {
         if(key!= "TOT"){
-        data_in_list.push(Number(data[country_id][year][key]))
+        dataList.push(Number(data[country_id][year][key]))
       }
       });
 
-      var bars = svg.selectAll(".bar").data(data_in_list)
+      var bars = svg.selectAll(".bar").data(dataList)
 
       // update barchart with new data
       bars.enter()
           .append("rect")
           .attr("class", "bar")
           .attr("x", function(d, i) {
-            return x_scale(i)
+            return xScale(i)
           })
           .attr("y", function(d) {
-            return y_scale(d) //Height minus data value
+            return yScale(d) //Height minus data value
           })
           .attr("width", (w - margin.left - margin.right) / (10) )
           .attr("height", function(d) {
-            return (h - margin.bottom - y_scale(d));
+            return (h - margin.bottom - yScale(d));
+          })
+          .style("fill", function(d,i){
+            return color[i]
           })
 
-          // make the update look smooth with a transistion and attrTween
-
+      // make the update look smooth with a transistion and attrTween
       bars.transition().duration(1500)
           .attr("y", function(d) {
-            return y_scale(d) //Height minus data value
+            return yScale(d) //Height minus data value
           })
           .attr("height", function(d) {
-            return (h - margin.bottom - y_scale(d));
+            return (h - margin.bottom - yScale(d));
           })
 
-      // Remove old ones
+      // Remove old bars
       bars.exit().remove();
+
+      // makeAxis(svg, h, w, margin, yScale)
+
     };
-    function updateyScale(country_values, height, margin){
-
-      var minimum = Math.min(...country_values)
-      var maximum = Math.max(...country_values)
-
-      console.log(minimum)
-      console.log(maximum)
-
-      // make y_scale
-      var y_scale = d3.scaleLinear()
-        .domain([minimum, maximum])
-        .range([height - margin.top, margin.bottom]);
-
-      return y_scale
-
-    }
 
   barchart('1995', 'AUT', 'False')
   barChartFunction = barchart;

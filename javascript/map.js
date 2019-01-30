@@ -34,7 +34,7 @@ function makeMap() {
         .attr('class', 'd3-tip')
         .offset([-10, 0])
         .html(function(d) {
-          return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Budget deficit in % of GDP: </strong><span class='details'>"  + format(d.deficit) + "<br></span>";
+          return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Budget deficit in percentage of GDP: </strong><span class='details'>"  + Math.round(d.deficit * 100) / 100 + '%' + "<br></span>";
         });
 
     // zoom in on the worldmap
@@ -48,7 +48,7 @@ function makeMap() {
     // define colors of the countries in worldmap, by their budget deficit
     var color = d3.scaleThreshold()
         .domain(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
-        .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ff7e00','#ff8d00','#ff9900','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
+        .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ffa500', '#ffc66f', '#ffd188','#dbd498','#b7c37d','#93b361','#6fa346','#479229','#008000'])
 
     // call function map and add the year in the svg
     map(svg, data, dataset, '1995', height, width, margin, color, tip, path);
@@ -103,7 +103,6 @@ function makeMap() {
     // call slider
     gTime.call(sliderTime);
 
-
     }).catch(function(e){
     throw(e);
   })
@@ -112,12 +111,13 @@ function makeMap() {
   function map(svg, data, dataset, year, height, width, margin, color, tip, path){
     // this function draws the map
 
+
     svg.call(tip);
 
      // find the country and budget deficit for the specific year
-    deficit_byID = {}
-    dataset.forEach(function(d) { deficit_byID[d['country']] = +d[year]; });
-    data.features.forEach(function(d) { d.deficit = deficit_byID[d.id] });
+    deficitById = {}
+    dataset.forEach(function(d) { deficitById[d['country']] = +d[year]; });
+    data.features.forEach(function(d) { d.deficit = deficitById[d.id] });
 
     // draw the map
     svg.append("g")
@@ -128,7 +128,7 @@ function makeMap() {
        .enter().append("path")
        .attr("d", path)
         // determine color per country based on the budget deficit that year
-       .style("fill", function(d) { return color(deficit_byID[d.id])})
+       .style("fill", function(d) { return color(deficitById[d.id])})
        .style('stroke', 'white')
        .style('stroke-width', 1.5)
        .style("opacity",1)
@@ -140,8 +140,8 @@ function makeMap() {
           tip.show(d);
           d3.select(this)
             .style("opacity", 1)
-            .style("stroke","white")
-            .style("stroke-width",3);
+            .style("stroke","black")
+            .style("stroke-width",2);
         })
         .on('mouseout', function(d){
           tip.hide(d);
@@ -154,8 +154,8 @@ function makeMap() {
 
     // add range and domain for legend
     var linear = d3.scaleOrdinal()
-        .domain(["<-10","-10 : -9","-9-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
-        .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ff7e00','#ff8d00','#ff9900','#ffa500','#dda100','#bb9d00','#989700','#749000','#4c8800','#008000'])
+        .domain(["No data","<-10","-10 to -9","-9 to -8","-7 to -6","-6 to -5","-5 to-4","-4 to -3","-3 to -2","-2 to -1","-1 to 0","0 to 1","1 to 2","2 to 3","3 to 4","4 to 5",">5"])
+        .range(['#000000','#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ffa500', '#ffc66f', '#ffd188','#dbd498','#b7c37d','#93b361','#6fa346','#479229','#008000'])
 
     // append g in svg for legend
     d3.select('#testSVG')
@@ -175,16 +175,15 @@ function makeMap() {
       .call(legendLinear);
 
     }
-
   function updateMap(svg, data, dataset, val, height, width, margin, color, tip, path){
 
     // get fullyear from val
     year = val.getFullYear()
 
     // find the country and budget deficit for the specific year
-    deficit_byID = {}
-    dataset.forEach(function(d) { deficit_byID[d['country']] = +d[year]; });
-    data.features.forEach(function(d) { d.deficit = deficit_byID[d.id] });
+    deficitById = {}
+    dataset.forEach(function(d) { deficitById[d['country']] = +d[year]; });
+    data.features.forEach(function(d) { d.deficit = deficitById[d.id] });
 
     // draw the map with new data
     svg.append("g")
@@ -195,7 +194,7 @@ function makeMap() {
        .enter().append("path")
        .attr("d", path)
        // determine color per country based on the budget deficit that year
-       .style("fill", function(d) { return color(deficit_byID[d.id])})
+       .style("fill", function(d) { return color(deficitById[d.id])})
        .style('stroke', 'white')
        .style('stroke-width', 1.5)
        .style("opacity",1)
@@ -207,8 +206,8 @@ function makeMap() {
           tip.show(d);
           d3.select(this)
                   .style("opacity", 1)
-                  .style("stroke","white")
-                  .style("stroke-width",3);
+                  .style("stroke","black")
+                  .style("stroke-width",2);
               })
         .on('mouseout', function(d){
           tip.hide(d);
@@ -220,7 +219,6 @@ function makeMap() {
       });
 
     }
-
   function makeText(svg,year){
     // remove titles from previous scatterplot
     svg.selectAll('text')
@@ -229,12 +227,13 @@ function makeMap() {
 
     // add year to the svg
     svg.append('text')
-       .attr('class', 'title')
-       .attr('x', 50)
-       .attr('y', 50)
-       .attr("transform", "rotate(0)")
+       .attr('font-size', '3em')
+       .attr('x', 20)
+       .attr('y', 70)
        .attr('text-anchor', 'middle')
+       .attr('class', 'title')
        .text(year)
+
 
     }
 

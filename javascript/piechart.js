@@ -30,12 +30,12 @@ function makePiechart(){
 
       // define the arc of the piechart
       var arc = d3.arc()              //this will create <path> elements for us using arc data
-          .innerRadius(80)
+          .innerRadius(90)
           .outerRadius(radius*0.9)
 
       // define arc2 of the piechart, to make the chart bigger when you hoover over the piechart
       var arc2 = d3.arc()
-          .innerRadius(80)
+          .innerRadius(90)
           .outerRadius(radius)
 
       // define variable pie, which calculates which angle to make
@@ -44,22 +44,22 @@ function makePiechart(){
           .value(function(d) { return d; });
 
       // define colors for the piechart
-      var color = ['#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#42d4f4', '#f032e6', '#bfef45', '#fabebe'];
+      var color = ['#845EC2','#D65DB1', '#FF9671','#FF6F91', '#FFC75F', '#F9F871', '#008F7A', '#008E9B', '#0081CF', '#C4FCEF'];
 
       // if called in the beginning, make piechart
       if(update == 'False'){
-          make_piechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color, fullname)
+          firstPiechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color, fullname)
       }
       // if function called from javascript map, update piechart
       else{
           updatePiechart(response[0], country, year, vis, width, height, radius, pie, arc, arc2, color, fullname)
       }
     }
-    function make_piechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color, fullname){
+    function firstPiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color, fullname){
 
       // make lists to put data in and sectornames
-      keys_in_list = []
-      data_in_list = []
+      keyList = ['Defence', 'Health', "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education", "Defence", "Health", "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education"]
+      dataList = []
 
       // define variable total where all the data is added up to
       var total = 0
@@ -68,48 +68,17 @@ function makePiechart(){
       Object.keys(data[country][year]).forEach(function(key) {
         if(key!= "TOT"){
           total = total + parseFloat(data[country][year][key])
-          data_in_list.push(parseFloat(data[country][year][key]))
-          // change short names to full names of the
-          if (key == "GRALPUBSER"){
-            keys_in_list.push("General public services")
-          }
-          else if(key == "DEF"){
-            keys_in_list.push("Defence")
-          }
-          else if(key == "HEALTH"){
-            keys_in_list.push("Health")
-          }
-          else if(key == "PUBORD"){
-            keys_in_list.push("Public order and safety")
-          }
-          else if(key == "ECOAFF"){
-            keys_in_list.push("Economic affairs")
-          }
-          else if(key == "ENVPROT"){
-            keys_in_list.push("Environmental protection")
-          }
-          else if(key == "HOUCOMM"){
-            keys_in_list.push("Housing and community amenities")
-          }
-          else if(key == "SOCPROT"){
-            keys_in_list.push("Social protection")
-          }
-          else if(key == "RECULTREL"){
-            keys_in_list.push("Recreation, culture and religion")
-          }
-          else if(key == "EDU"){
-            keys_in_list.push("Education")
-          }
+          dataList.push(parseFloat(data[country][year][key]))
         }});
 
       // make paths for the piechart
-      var path = vis.datum(data_in_list).selectAll(".pad")
+      var path = vis.datum(dataList).selectAll(".pad")
           .data(pie)
 
       // make piechart in svg
       path.enter().append("path")
           .attr("class", "pad")
-          .attr("fill", function(d, i) { console.log(i);return color[i]; })
+          .attr("fill", function(d, i) { return color[i]; })
           .attr("d", arc)
           .each(function(d) { this._current = d; });
 
@@ -120,14 +89,22 @@ function makePiechart(){
       d3.select(this).attr("d", arc2)
         // calcualte percentage of a sector
         var percent = Math.round(10000 * d.value / total) / 100;
-        // add in the middle the percentage and the name of the sector
+        // add in the middle the name of the sector
       vis.append("text")
          .attr("text-anchor", "middle")
          .attr('font-size', '0.8em')
          .attr("class", 'percentage')
-         .attr('y', 20)
-         .text(keys_in_list[i] + percent + '%');
+         .attr('y', 15)
+         .text(keyList[i]);
+      // add percentage below the sector
+      vis.append("text")
+         .attr("text-anchor", "middle")
+         .attr('font-size', '0.8em')
+         .attr("class", 'percentage')
+         .attr('y', 35)
+         .text(percent + '%');
          })
+
          // remove the percentage and the name of the sector when the house is out of the chart
          .on('mouseout', function(d,i){
            d3.select(this).attr("d", arc)
@@ -155,8 +132,8 @@ function makePiechart(){
     function updatePiechart(data, country, year, vis, width, height, radius, pie, arc, arc2, color,fullname){
 
       // make lists to put data in and sectornames from the update
-      keys_in_list = []
-      data_in_list = []
+      keyList = ['Defence', 'Health', "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education", "Defence", "Health", "Housing and community amenities", "Public order and safety", "Economic affairs", "General public services", "Recreation, culture and religion", "Social protection", "Environmental protection", "Education"]
+      dataList = []
 
       // define variable total where all the data is added up to
       var total = 0
@@ -165,42 +142,11 @@ function makePiechart(){
       Object.keys(data[country][year]).forEach(function(key) {
       if(key!= "TOT"){
         total = total + parseFloat(data[country][year][key])
-        data_in_list.push(parseFloat(data[country][year][key]))
-        // change short names to full names of the
-        if (key == "GRALPUBSER"){
-          keys_in_list.push("General public services")
-        }
-        else if(key == "DEF"){
-          keys_in_list.push("Defence")
-        }
-        else if(key == "HEALTH"){
-          keys_in_list.push("Health")
-        }
-        else if(key == "PUBORD"){
-          keys_in_list.push("Public order and safety")
-        }
-        else if(key == "ECOAFF"){
-          keys_in_list.push("Economic affairs")
-        }
-        else if(key == "ENVPROT"){
-          keys_in_list.push("Environmental protection")
-        }
-        else if(key == "HOUCOMM"){
-          keys_in_list.push("Housing and community amenities")
-        }
-        else if(key == "SOCPROT"){
-          keys_in_list.push("Social protection")
-        }
-        else if(key == "RECULTREL"){
-          keys_in_list.push("Recreation, culture and religion")
-        }
-        else if(key == "EDU"){
-          keys_in_list.push("Education")
-        }
+        dataList.push(parseFloat(data[country][year][key]))
       }});
 
       // make new paths with the new data
-      var path = vis.datum(data_in_list).selectAll(".pad")
+      var path = vis.datum(dataList).selectAll(".pad")
           .data(pie)
       // update the piechart
       path.enter().append("path")
@@ -215,17 +161,24 @@ function makePiechart(){
       // when you hoover over the piechart
       d3.selectAll(".pad")
         .on('mouseover', function(d,i){
-      d3.select(this).attr("d", arc2)
-      // calcualte percentage of a sector
-      var percent = Math.round(10000 * d.value / total) / 100;
-      // add in the middle the percentage and the name of the sector
-      vis.append("text")
-         .attr("text-anchor", "middle")
-         .attr('font-size', '0.8em')
-         .attr("class", 'percentage')
-         .attr('y', 20)
-         .text(keys_in_list[i] + percent + '%');
-         })
+          d3.select(this).attr("d", arc2)
+          // calcualte percentage of a sector
+          var percent = Math.round(10000 * d.value / total) / 100;
+          // add in the middle the name of the sector
+          vis.append("text")
+             .attr("text-anchor", "middle")
+             .attr('font-size', '0.8em')
+             .attr("class", 'percentage')
+             .attr('y', 15)
+             .text(keyList[i]);
+          // add percentage below the sector
+          vis.append("text")
+             .attr("text-anchor", "middle")
+             .attr('font-size', '0.8em')
+             .attr("class", 'percentage')
+             .attr('y', 35)
+             .text(percent + '%');
+            })
          // remove the percentage and the name of the sector when the house is out of the chart
          .on('mouseout', function(d,i){
            d3.select(this).attr("d", arc)
@@ -251,7 +204,7 @@ function makePiechart(){
     function arcTween(a) {
       var radius = 425/2
       var arc = d3.arc()              //this will create <path> elements for us using arc data
-          .innerRadius(80)
+          .innerRadius(90)
           .outerRadius(radius*0.9)
 
       var i = d3.interpolate(this._current, a);

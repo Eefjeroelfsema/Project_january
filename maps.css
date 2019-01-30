@@ -9,10 +9,15 @@ svg {
     box-shadow: 0 1px 5px #ddd;
 }
 
-rect {
+tab {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+/* rect {
   fill: transparent;
   shape-rendering: crispEdges;
-}
+} */
 
 .axis path,
 .axis line {
@@ -104,7 +109,7 @@ stroke-linejoin: round;
   font-family:"avenir next", Arial, sans-serif;
   padding: 6px;
   background: rgba(0, 0, 0, 0.6);
-  color: black;
+  color: white;
   border-radius: 1px;
   pointer-events: none;
   }
@@ -186,14 +191,14 @@ stroke-linejoin: round;
   fill: none;
   stroke: steelblue;
 }
-
+/*
 .bar {
   fill: steelblue;
-}
-
+} */
+/*
 .bar:hover {
   fill: brown;
-}
+} */
 
 /* The Modal (background) */
 .modal {

@@ -27,14 +27,12 @@ is the only thing I could make today.
 
 ![schermafbeelding 2019-01-10 om 15 11 17](https://user-images.githubusercontent.com/43995505/50974510-ab943e00-14eb-11e9-82be-56713cef5222.png)
 
-Today I also added a legend to show which colour corresponds to which budget deficit precentage,
-it is now below in my page. I want to put it next to my map, but I couldn't figure out today how
-I could do that. I will work on that another day.
 
 Improvents tomorrow: I want to add circles to the lines, where the points are displayed.
 And with this an interactive feature that you can see the points (see picture for the circles).
 I want to make a button where you can chose to display only 1 country, or a few countries at the same time. I also
-want to make the axis for the linechart. Improvements for next week: I want to make a legend for my worldmap and I want to add figures to my specific info page per coutnry.
+want to make the axis for the linechart.
+Improvements for next week: I want to make a legend for my worldmap and I want to add figures to my specific info page per coutnry.
 
 ![schermafbeelding 2019-01-10 om 15 23 49](https://user-images.githubusercontent.com/43995505/50974591-e0a09080-14eb-11e9-8b51-0ea34a30313f.png)
 
@@ -44,8 +42,12 @@ Today I added the circles and made axis for the multiple linegraph (see picture)
 
 ![schermafbeelding 2019-01-11 om 15 19 03](https://user-images.githubusercontent.com/43995505/51039638-eb275c80-15b5-11e9-8550-7c5919af5e06.png)
 
+
 I deleted the countries in my worldmap which are not in the Europian Union. And I coloured the countries
 according to their budget deficit (see picture)
+I also added a legend to show which colour corresponds to which budget deficit precentage,
+it is now below in my page. I want to put it next to my map, but I couldn't figure out today how
+I could do that. I will work on that another day.
 
 ![schermafbeelding 2019-01-11 om 15 18 56](https://user-images.githubusercontent.com/43995505/51039636-ea8ec600-15b5-11e9-875b-d77ccff5c05d.png)
 
