@@ -9,7 +9,6 @@ svg {
     box-shadow: 0 1px 5px #ddd;
 }
 
-
 .axis path,
 .axis line {
   fill: none;
@@ -61,6 +60,10 @@ svg {
   stroke: #000;
 }
 
+tab {
+       display:inline-block;
+       margin-left: 40px;
+}
 
 .names {
 fill: none;
@@ -127,6 +130,9 @@ stroke-linejoin: round;
     left: 100%;
   }
 
+/*    text{
+    pointer-events:none;
+  }*/
 
   .details{
     color:white;
@@ -153,6 +159,10 @@ stroke-linejoin: round;
   .focus circle {
   fill: none;
   stroke: steelblue;
+}
+
+.bar {
+  fill: steelblue;
 }
 
 .bar:hover {

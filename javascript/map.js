@@ -267,8 +267,6 @@ function makeMap() {
        .attr('text-anchor', 'middle')
        .attr('class', 'title')
        .text(year)
-
-
     }
 
 };

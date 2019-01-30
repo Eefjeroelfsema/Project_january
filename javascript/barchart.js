@@ -84,9 +84,12 @@ function makeBarchart(){
         }
       });
 
+      // make axis for the barchart
       makeAxis(svg, h, w, margin, yScale)
 
+      // call keylist
       keyLists = keyList
+
       // make barchart
       svg.selectAll(".bar")
          .data(dataList)
@@ -115,12 +118,13 @@ function makeBarchart(){
               .attr('text-anchor', 'left')
               .text('Total spend on ' + keyList[i] + ': ' +Math.round(d * 100) / 100 + '% of GDP')
             })
-
+          // remove percentage of specific sector when mouseout
           .on('mouseout', function(d,i){
             d3.select(this)
             svg.selectAll('.sector').remove()
          })
 
+         // add total of gdp spending on top in svg
          makeText(svg, h, w, margin, total)
 
     }
@@ -139,6 +143,7 @@ function makeBarchart(){
        - color: color for each sector (same as piechart)
        */
 
+       // put data in list
       dataList = []
       Object.keys(data[countryID][year]).forEach(function(key) {
         if(key!= "TOT"){
@@ -192,6 +197,7 @@ function makeBarchart(){
        - color: color for each sector (same as piechart)
        */
 
+      // call keys and put in keylist
       keyLists = keyList
 
       // add sectors under the x-axis

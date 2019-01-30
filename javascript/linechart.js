@@ -61,8 +61,8 @@ function makeLinechart() {
       countryline(svg, xScale, yScale, years, countryValues, country)
     }
 
-    // update function
-    d3.select("#objectID").on("change", change)
+     // select all lines and remove them
+     d3.select("#objectID").on("change", change)
       function change() {
 
         for(i=0; i<=22; i++){
@@ -85,7 +85,7 @@ function makeLinechart() {
           yScale = updateyScale(countryValues[country], height, margin)
           // draw the line by calling this function
           countryline(svg, xScale, yScale, years, countryValues, country)
-          // add x_axis
+          // add xaxis
           makeAxis(svg, xScale, yScale, height, width, margin)
         }
 
