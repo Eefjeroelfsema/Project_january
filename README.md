@@ -1,34 +1,23 @@
-# Projectproposal Eefje Roelfsema (10993673)
+## Eefje Roelfsema 10993673
 
-## Problem statement:
+# Budget deficits - purpose
 Every government has a budget deficit in the European Union,
 there are strict rules but there is no clearity for the citizens of the EU if these rules are persued.
 Therefore I want to make it clear for the EU citizens.
 
-## Solution:
-I want to make an datavisualization of the European Union, where it becomes clear what the budget deficits are and if
-they follow the rules.
+# Screenshots of data visualizations
 
-In this data visualization I will use the map of the world to display the different information for certain countries.
-I also want to make it possible to click on a certain country and display a lot of additional information over that country
-in a nice visual overview (GDP, government spendings etc.)
+![schermafbeelding 2019-01-30 om 16 17 47](https://user-images.githubusercontent.com/43995505/51991492-8328af80-24ab-11e9-9fa1-0878f3c56b56.png)
 
-In my doc file are a 3 examples of how my data visualisation will look like. In my mainpage I want a map of the EU,
-where next to the map there is a list of all the budget deficits of each country of this year. If you click on a country
-in the map of the EU, I want to show a infographic with additional information over that country. A historical line graph
-of the budget deficits, government spendings GDP etc. there are 2 examples of this in my doc file.
+![schermafbeelding 2019-01-30 om 16 17 58](https://user-images.githubusercontent.com/43995505/51991493-8328af80-24ab-11e9-9e16-a21af674550b.png)
 
-## Minimum features:
-- Map of the European union, with list of budget deficits.
-- Multiple linechart with historical data for all countries
-- If you click on the button you can look at a country in specific
+![schermafbeelding 2019-01-30 om 16 18 07](https://user-images.githubusercontent.com/43995505/51991494-8328af80-24ab-11e9-9c2e-3e20a921570f.png)
 
-## Maximum features:
-- The amount of information on the specific country pages.
-- For every extra additional information, a page where it is visualized for all the countries together
-- Some ideas that come in mind when working on this project.
-- For each country a specific page with additional information.
+# Sources of external code
 
-## Data source:
-OECD
-For example this page: https://data.oecd.org/gga/general-government-deficit.htm#indicator-chart
+- https://unpkg.com/d3-simple-slider/build/d3-simple-slider.js
+- https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+- http://d3js.org/topojson.v1.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js
+- https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css

@@ -47,7 +47,7 @@ function makeMap() {
 
     // define colors of the countries in worldmap, by their budget deficit
     var color = d3.scaleThreshold()
-        .domain(["-10","-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
+        .domain(["-9","-8","-7","-6","-5","-4","-3","-2","-1","0","1","2","3","4","5"])
         .range(['#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ffa500', '#ffc66f', '#ffd188','#dbd498','#b7c37d','#93b361','#6fa346','#479229','#008000'])
 
     // call function map and add the year in the svg
@@ -170,7 +170,7 @@ function makeMap() {
 
     // add range and domain for legend
     var linear = d3.scaleOrdinal()
-        .domain(["No data","<-10","-10 to -9","-9 to -8","-7 to -6","-6 to -5","-5 to-4","-4 to -3","-3 to -2","-2 to -1","-1 to 0","0 to 1","1 to 2","2 to 3","3 to 4","4 to 5",">5"])
+        .domain(["No data","<-9","-9 to -8","-8 to -7","-7 to -6","-6 to -5","-5 to-4","-4 to -3","-3 to -2","-2 to -1","-1 to 0","0 to 1","1 to 2","2 to 3","3 to 4","4 to 5",">5"])
         .range(['#000000','#ff0000','#ff2b18','#ff4029','#ff5038','#ff5d47','#fe6a55','#fc7564','#ffa500', '#ffc66f', '#ffd188','#dbd498','#b7c37d','#93b361','#6fa346','#479229','#008000'])
 
     // append g in svg for legend
