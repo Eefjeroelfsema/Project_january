@@ -4,7 +4,7 @@ var barChartFunction;
 function makeBarchart(){
 
   // import data
-  var data = '../data/data_distribution.json'
+  var data = 'data/data_distribution.json'
   var requests = [d3.json(data)]
   var format = d3.format(",");
 

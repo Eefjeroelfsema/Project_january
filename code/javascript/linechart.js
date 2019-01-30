@@ -1,7 +1,7 @@
 function makeLinechart() {
 
   // import data
-  var data = '../data/data.json'
+  var data = 'data/data.json'
   var format = d3.format(",");
   var request = [d3.json(data)]
 

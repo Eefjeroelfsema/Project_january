@@ -3,7 +3,7 @@ var pieChartfunction;
 function makePiechart(){
 
   // import data
-  var data = '../data/data_distribution.json'
+  var data = 'data/data_distribution.json'
   var format = d3.format(",");
   var request = [d3.json(data)]
 

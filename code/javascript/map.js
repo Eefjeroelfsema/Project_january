@@ -1,8 +1,8 @@
 function makeMap() {
 
   // import data
-  var world_countries = '../data/world_countries.json'
-  var data = '../data/data.json'
+  var world_countries = 'data/world_countries.json'
+  var data = 'data/data.json'
 
   var requests = [d3.json(world_countries), d3.json(data)]
   var format = d3.format(",");
