@@ -1,11 +1,8 @@
-## Eefje Roelfsema 10993673
+# Budget deficits
+Endproject minor programming january 2019: Budget Deficits
+Author: Eefje Roelfsema, 10993673
 
-# Budget deficits - purpose
-Every government has a budget deficit in the European Union,
-there are strict rules but there is no clearity for the citizens of the EU if these rules are persued.
-Therefore I want to make it clear for the EU citizens.
-
-# Screenshots of data visualizations
+## Screenshots of data visualizations
 
 ![schermafbeelding 2019-01-30 om 16 17 47](https://user-images.githubusercontent.com/43995505/51991492-8328af80-24ab-11e9-9fa1-0878f3c56b56.png)
 
@@ -13,7 +10,12 @@ Therefore I want to make it clear for the EU citizens.
 
 ![schermafbeelding 2019-01-30 om 16 18 07](https://user-images.githubusercontent.com/43995505/51991494-8328af80-24ab-11e9-9c2e-3e20a921570f.png)
 
-# Sources of external code
+## Purpose
+Every government has a budget deficit in the European Union,
+there are strict rules but there is no clearity for the citizens of the EU if these rules are persued.
+Therefore I want to make it clear for the EU citizens.
+
+## Sources of external code
 
 - https://unpkg.com/d3-simple-slider/build/d3-simple-slider.js
 - https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
