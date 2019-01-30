@@ -2,10 +2,6 @@
 - Endproject minor programming january 2019: Budget Deficits
 - Author: Eefje Roelfsema, 10993673
 
-# Link to my page
-
-https://eefjeroelfsema.github.io/Project_january
-
 ## Screenshots of data visualizations
 
 ![schermafbeelding 2019-01-30 om 16 17 47](https://user-images.githubusercontent.com/43995505/51991492-8328af80-24ab-11e9-9fa1-0878f3c56b56.png)
