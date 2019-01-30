@@ -1,6 +1,6 @@
 # Budget deficits
-Endproject minor programming january 2019: Budget Deficits
-Author: Eefje Roelfsema, 10993673
+- Endproject minor programming january 2019: Budget Deficits
+- Author: Eefje Roelfsema, 10993673
 
 ## Screenshots of data visualizations
 
