@@ -104,7 +104,7 @@ why I chose to make all the lines grey, and when you hover over them: red. This 
 but I don't use the colors. Above I also stated that it is possible to see how a line is going on it's own, by using the
 button.
 
-- Styling of lines (multiple linechart):
+- <b>Styling of lines (multiple linechart)</b>:
 In my linechart I chose to round the linechart (instead of have pointy lines). I did this because I thought it looked
 better. I never changed it back. Looking back at it, from a scientific point of view, the lines should have been pointy.
 Because it is not a continuous variable, but just a new number every year.
@@ -113,13 +113,13 @@ linechart. I changed the color of all the lines to grey and I did the same to th
 the lines they became red, and the corresponding circles stayed grey. Because I couldn't fix this, and I really did not
 like it. I removed the circles.
 
-- Modal
+- <b>Modal</b>:
 In my proposal and design document I wanted to make a specific html-page, where you can click on an country
 in the worldmap and it displays extra information. I implemented this, but it wasn't user friendly. Because everytime
 you clicked on a country you were sent to a new page, that was irritating. Therefore I found a solution: the modal.
 In the modal I show my extra information, this pops up in stead of directing to a different page, and it is easy to click away.
 
-- Specific information
+- <b>Specific information</b>:
 As said in 'modal' above, I made a modal to display the extra information. In my design document I wasn't clear
 which extra information I wanted to display. I chose to add government spendings to this. Because, the governments spendings
 are what's causing the budget deficit. So looking at the spendings you get a better insight in how the deficit
@@ -130,7 +130,7 @@ is a bit double, but after I found out that the barchart data was in percentages
 remove it. I have thought of calculating the millions myself by multiplying the percentage of GDP by the GDP. But I couldn't
 find accurate data about the GDP, every site said something different. Therefore I did not do that.
 
-- Colours
+- <b>Colours</b>:
 The purpose of these visualizations was to show the user if the countries of the EU follow the EU rules. The rule
 is that the budget deficit, must not come lower than 3% (-3% in my website). Having a budget deficit lower than -3%,
 means that a country is not following the rules. I gave that a red color (lightred - red, how bad it's going). If the budget deficit is between -3% and 0%, a country is following the rules of the EU, but their still spending more money than that they receive, therefore I gave that the colour orange (orange -3% - light orange 0%). When a country has a positive budget deficit, it means that they spend less money than they receive and their holding on to the rules of the EU. I gave these countries
