@@ -64,7 +64,8 @@ makes sure the update goes smoothly.
 a specific sector. The visualization appears when the user clicks on a country in the worldmap.
 According to the year and the country the user selects, the piechart is made with that information.
 In the middle of the piechart the year and country are shown. When you hover over the charts, the
-percentage and the sector are shown in the middle below the year and country.
+percentage and the sector are shown in the middle below the year and country. The colours of sectors in the piechart
+are the same as the colours of the sectors in the barchart, so you can see easily see which sectors belong to each other.
 
 ### barchart.js
 - <b>Code</b>: The barchart is also shown in the modal, when clicked on a country. Therefore the main function barchart is also a
@@ -78,32 +79,32 @@ is called as well, which updates the total spendingsinformation on top. The make
 because the axis are for every update the same, so they can stay the same.
 - <b>Functionality</b>: In this visualization it is shown which percentage of the GDP of that country that year is
 spent to a specific sector. The visualizatoin appears next to the piechart when the user clicks on a country in the worldmap.
-According to the year and the country the user selects, the barchart is made with that information.
+According to the year and the country the user selects, the barchart is made with that information. The colours of sectors in the barchart are the same as the colours of the sectors in the piechart, so you can see easily see which sectors belong to each other.
 
 ## Choices made
 
-- Slider:
-In my design document I had stated that I wanted an interactive element, but I hadn't decided what it was gonna be yet.
-I chose to add an slider (instead of a button to chose the year), because it is easy to use and it
+- <b> Slider</b>:
+In my design document I had stated that I wanted an interactive element in my map, but I hadn't decided what it was gonna be yet.
+I chose to add an slider (instead of a button to choose the year), because it is easy to use and it
 is easier to see the changes over the years (by the changing colours). I'm satisfied with this choice.
 
-- Button to choose countries in the linechart
-In my design document I added 2 pictures of multiple linecharts. The first 1 where all the country lines
-are a bit messy (not easy to see how each line goes). The second where you can select a line with your mouse
-and it becomes clear how it goes. I also added this to my multiple linechart, in the first homepage all the lines
-are drawn and when you select a line with the mouse it becomes red, and it is easier to see which path it is following.
-But it was unclear which country you select the line of. Therefore I added a button where you can select a single country,
-and see only that historical line. The axis are moving with the new range of that line. This way it is easier to see the
+- <b> Button to choose countries in the linechart</b>:
+In my design document I added 2 pictures of multiple linecharts. The first one is the one where all the country lines
+are a bit messy (not easy to see how each line goes). On the second picture you can select a line with your mouse
+and it becomes clear how it goes. I also did this to my multiple linechart: in the first homepage all the lines
+are drawn, when you select a line with the mouse it becomes red, and it is easier to see which path it is following.
+The country also appears in the righttopcorner when you hover with your mouse over the lines. But it wasn't super easy
+to see the path a line was taking, therefore I added a button. If you push the button, only the line of that country is drawn. The axis are moving with the new range of that line. This is my solution to see easier the
 path of a single country.  
 
-- Colour of lines (multiple linechart)
+- <b> Colour of lines (multiple linechart) </b>:
 Making the linechart I first decided that I wanted every country to get it's own linecolor. I did
-implemented this, but it was really ugly and messy. It also did not made the linechart more readibly, that's
-why I chose to make all the lines grey, and when you hover over them red. This way it is possible to see how a line goes,
+implemented this, but it was really ugly and messy. It also did not made the linechart more readibly. That's
+why I chose to make all the lines grey, and when you hover over them: red. This way it is possible to see how a line goes,
 but I don't use the colors. Above I also stated that it is possible to see how a line is going on it's own, by using the
 button.
 
-- Styling of lines (multiple linechart)
+- Styling of lines (multiple linechart):
 In my linechart I chose to round the linechart (instead of have pointy lines). I did this because I thought it looked
 better. I never changed it back. Looking back at it, from a scientific point of view, the lines should have been pointy.
 Because it is not a continuous variable, but just a new number every year.
@@ -120,22 +121,19 @@ In the modal I show my extra information, this pops up in stead of directing to 
 
 - Specific information
 As said in 'modal' above, I made a modal to display the extra information. In my design document I wasn't clear
-which extra information I wanted to display. I chose to add government spendings to this. Because, governments become
-a budget deficit by spending more than they recevie. So looking at the spendings you get a better insight in how the deficit
+which extra information I wanted to display. I chose to add government spendings to this. Because, the governments spendings
+are what's causing the budget deficit. So looking at the spendings you get a better insight in how the deficit
 became what it is. I displayed the spendings in 2 ways: the percentage of the total spendings to each sector (piechart) and the
 percentage of the GDP spent to a sector (barchart). At first I thought that the percentage of the GDP was a number
-in millions, but I found out later that it was what it is. Maybe showing these 2 visualisations of spendings
+in millions, but I found out later that it was what it is. Maybe showing these 2 visualisations of spendings in percentage
 is a bit double, but after I found out that the barchart data was in percentages in stead of millions I didn't want to
 remove it. I have thought of calculating the millions myself by multiplying the percentage of GDP by the GDP. But I couldn't
 find accurate data about the GDP, every site said something different. Therefore I did not do that.
 
 - Colours
 The purpose of these visualizations was to show the user if the countries of the EU follow the EU rules. The rule
-is that the budget deficit, must not come lower than 3%. So lower than 3% means that a country is not doing it good,
-I gave that a red color (lightred - red, how bad it's going). If the budget deficit is between -3% and 0%,
-a country is following the rules of the EU, but their still spending more money than that they receive, therefore
-I gave that the colour orange (orange (-3%) - light orange (0%)). When a country has a positive budget deficit, it means that
-they spend less money than they receive and their holding on to the rules of the EU. I gave these countries
+is that the budget deficit, must not come lower than 3% (-3% in my website). Having a budget deficit lower than -3%,
+means that a country is not following the rules. I gave that a red color (lightred - red, how bad it's going). If the budget deficit is between -3% and 0%, a country is following the rules of the EU, but their still spending more money than that they receive, therefore I gave that the colour orange (orange -3% - light orange 0%). When a country has a positive budget deficit, it means that they spend less money than they receive and their holding on to the rules of the EU. I gave these countries
 a green colour.  
 The colours in my piechart are just so you see the difference between sectors, the color of the sectors in the barchart
 are the same as the colour in the piechart.
