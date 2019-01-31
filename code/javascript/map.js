@@ -92,6 +92,7 @@ function makeMap() {
               // there is no data of Romenia, Croatia, Bulgaria and Cyprus
               if(d.id != 'ROU' && d.id != 'HRV' && d.id != 'CYP' && d.id != 'BGR'){
                 // update piechartfunction and barchart in the modal                pieChartfunction(val.getFullYear(), d.id, 'True', d.properties['name'])
+                pieChartfunction(val.getFullYear(), d.id, 'True', d.properties['name'])
                 barChartFunction(val.getFullYear(), d.id, 'True', d.properties['name'])
                 modal.style.display = "block";}
             })
