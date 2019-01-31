@@ -1,5 +1,7 @@
-# Final report Eefje Roelfsema (10993673)
+# Final report
 
+- Eefje Roelfsema, 10993673
+- Endproject: Budget deficit
 ## Description of data visualization
 
 My website shows the budget deficit of the Europian Union to the user. On my homepage it is
@@ -16,10 +18,9 @@ website: a map, multiple linechart, piechart and a barchart.
 
 ### map.js:
 - <b>Code</b>: In this file my Europian Map is made and updated. In the beginning the svg is made and the information
-for the map is added. Then the map is drawed via the function map. Via
-makeText is the year in the leftcorner added and updated. In this javascript there is also the code for the slider.
-When the slider is moved the function updateMap is called, which changes the colour of the countries to
-the colours according to the budget deficit that year. In the map I added a tooltip.
+for the map is added. Then the map is drawed via the function map. Via the
+makeText function the year in the leftcorner is added and updated. In this javascript there is also the code for the slider.
+When the slider is moved the function updateMap is called, which changes the colour of the countries according to the budget deficit that year. In the map I added a tooltip.
 The map javascript is in contact with the barchartjavascript, piechartjavascript and the modal.
 If you click on a country, the modal appears and the barchart and piechart are updated
 with the country and year information.
@@ -32,24 +33,25 @@ your mouse over the countries, then a tooltip appears which shows you the name o
 ### linechart.js
 - <b>Code</b>: In this file I make and update the linechart. First the svg is made for the linechart. In a
 dictionary I put the values of every country in a list. Then the function countryline is called.
-In this function I make one line for the country it is called for. Therefore I call this function
-23 times, for each country in my dataset. So in the beginning a multiple linechart is made with 23 lines.
-The function makeAxis makes the axis. If you hover over a line in the linegraph, the line turns red
-and the function fullnameCountry function is called to display the fullname of the country in the righttop.
+In this function I make one line for the country it is called for. In the beginning a multiple linechart is made with 23 lines,
+so my countryline function is called 23 times. The function makeAxis makes the axis.
+If you hover over a line in the linegraph, the line turns red
+and the function fullnameCountry is called to display the fullname of the country in the righttop.
 Via the button you can choose to display only 1 country. All the lines are removed and
 only the line of that one country is drawed (calling the countryline function once with that info).
 The yscale is updated with the new data and then the axis are updated as well. You can always choose to
 show all the countries again, by pushing that button.
 - <b>Functionality</b>: In this visualization I show the historical budget deficits of the countries.
-The first linechart drawn is with all the countries together. Via a button next to the title you can
-select a certain country and only the line of that country is drawed. The axis move together with
-the range of the country values. It is also possible to draw all the lines together again.
+The first linechart is drawn with all the countries together. Via a button next to the title you can
+select a certain country and then only the line of that country is drawed. The axis move together with
+the range of the country values. It is also possible to draw all the lines together again, by pushing the all countries
+button.
 
 ### piechart.js
 - <b>Code</b>: The piechart is shown in the modal, when clicked on a country. Therefore the main function piechart is a
 global function (pieChartFunction), which can be called from in the map.js. Before anything is called, the svg,
 the width height and radius are determined above. The piechart.js file calls itself in the beginning,
-to make the fist piechart. The piechart function calls the firstPiechart function.
+to make the fist piechart. When that happens the piechart function calls the firstPiechart function.
 When a country is clicked on in the map, the mapjavascript calls the piechartFunction,
 which calls the updatepiechartfunction. The pieChartFunction contains
 the new country and year, and with that information the piechart is updated. The function arcTween
@@ -63,7 +65,7 @@ percentage and the sector are shown in the middle below the year and country.
 ### barchart.js
 - <b>Code</b>: The barchart is also shown in the modal, when clicked on a country. Therefore the main function barchart is also a
 global function (barChartFunction), which can be called from in the map.js. The barchart.js file calls itself in the beginning,
-to make the fist barchart. The barchart function calls the firstBarchart and the makeAxis function. The makeText
+to make the fist barchart. When that happens the barchart function calls the firstBarchart and the makeAxis function. The makeText
 function adds the total percentage of GDP spend information in the top of the histogram.
 When a country is clicked on in the map, the mapjavascript calls the barChartFunction,
 which calls the updateBarchart fucntion. The barChartFunction contains
@@ -90,12 +92,18 @@ But it was unclear which country you select the line of. Therefore I added a but
 and see only that historical line. The axis are moving with the new range of that line. This way it is easier to see the
 path of a single country.  
 
-- Styling of lines (multiple linechart)
+- Colour of lines (multiple linechart)
 Making the linechart I first decided that I wanted every country to get it's own linecolor. I did
 implemented this, but it was really ugly and messy. It also did not made the linechart more readibly, that's
 why I chose to make all the lines grey, and when you hover over them red. This way it is possible to see how a line goes,
 but I don't use the colors. Above I also stated that it is possible to see how a line is going on it's own, by using the
-button. When I made the linechart I also wanted to add circles where the datapoints where. I added this to my
+button.
+
+- Styling of lines (multiple linechart)
+In my linechart I chose to round the linechart (instead of have pointy lines). I did this because I thought it looked
+better. I never changed it back. Looking back at it, from a scientific point of view, the lines should have been pointy.
+Because it is not a continuous variable, but just a new number every year.
+When I made first made the linechart I also wanted to add circles where the datapoints where. I added this to my
 linechart. I changed the color of all the lines to grey and I did the same to the circles. But when you hover over
 the lines they became red, and the corresponding circles stayed grey. Because I couldn't fix this, and I really did not
 like it. I removed the circles.
