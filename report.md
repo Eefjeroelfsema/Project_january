@@ -11,6 +11,10 @@ on a country in the EU-map. Then a modal appears which shows a piechart of
 the percentage of the total spendings spend to a single sector. Next to the piechart there is a modal which
 shows the percentage of the GDP that is spend to the different sectors.
 
+![schermafbeelding 2019-01-31 om 11 50 06](https://user-images.githubusercontent.com/43995505/52049658-a9535b80-254e-11e9-9b8d-1cff740df295.png)
+
+![schermafbeelding 2019-01-31 om 11 50 37](https://user-images.githubusercontent.com/43995505/52049659-a9535b80-254e-11e9-9a84-7b3e8f147a51.png)
+
 ## Technical design
 
 For each of my data visualizations I made a new javascriptfile. There are four visualizations in my
