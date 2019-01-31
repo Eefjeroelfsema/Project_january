@@ -24,7 +24,7 @@ I will explain my javascripts and visualizations below:
 
 ### map.js:
 - <b>Code</b>: In this file my Europian Map is made and updated. In the beginning the svg is made and the information
-for the map is added. Then the map is drawed via the function map. Via the
+for the map is added. Then the map is drawn via the function map. Via the
 makeText function the year in the leftcorner is added and updated. In this javascript there is also the code for the slider.
 When the slider is moved the function updateMap is called, which changes the colour of the countries according to the budget deficit that year. In the map I added a tooltip.
 The map javascript is in contact with the barchartjavascript, piechartjavascript and the modal.
@@ -44,9 +44,9 @@ so my countryline function is called 23 times. The function makeAxis makes the a
 If you hover over a line in the linegraph, the line turns red
 and the function fullnameCountry is called to display the fullname of the country in the righttop.
 Via the button you can choose to display only 1 country. Then all the lines are removed and
-only the line of that one country is drawed (calling the countryline function once with that info).
-The yscale is updated with the new data and then the axis are updated as well. You can always choose to
-show all the countries again, by pushing that button.
+only the line of that one country is drawed.
+The yscale is updated with the new data, by calling the yscale function. With the new yscale, new axis are made
+with the makeAxis function.
 - <b>Functionality</b>: In this visualization I show the historical budget deficits of the countries.
 The first linechart is drawn with all the countries together. Via a button next to the title you can
 select a certain country and then show only the line of that country. The axis move together with
@@ -57,7 +57,7 @@ button.
 - <b>Code</b>: The piechart is shown in the modal, when clicked on a country. Therefore the main function piechart is a
 global function (pieChartFunction), which can be called from in the map.js. Before anything is called, the svg,
 the width height and radius are determined above. The piechart.js file calls itself in the beginning,
-to make the fist piechart. When that happens the piechart function calls the firstPiechart function, that draws
+to make the fist piechart. When that happens the overall global piechart function calls the firstPiechart function, that draws
 the first piechart.
 When a country is clicked on in the map, the mapjavascript calls the piechartFunction,
 which calls the updatepiechartfunction. The pieChartFunction contains
@@ -73,7 +73,7 @@ are the same as the colours of the sectors in the barchart, so you can easily se
 ### barchart.js:
 - <b>Code</b>: The barchart is also shown in the modal, when clicked on a country. Therefore the main function barchart is also a
 global function (barChartFunction), which can be called from in the map.js. The barchart.js file calls itself in the beginning,
-to make the fist barchart. When that happens the barchart function calls the firstBarchart and the makeAxis function,
+to make the fist barchart. When that happens the overall global barchart function calls the firstBarchart and the makeAxis function,
 that draws the first barchart and it's axis. The makeText
 function adds the total percentage of GDP spend information in the top of the histogram.
 When a country is clicked on in the map, the mapjavascript calls the barChartFunction,
@@ -89,7 +89,7 @@ According to the year and the country the user selects, the barchart is made wit
 
 - <b> Slider</b>:
 In my design document I had stated that I wanted an interactive element in my map, but I hadn't decided what it was gonna be yet.
-I chose to add an slider (instead of a button to choose the year), because it is easy to use and it
+I chose to add a slider (instead of a button to choose the year), because it is easy to use and it
 is easy to see the changes over the years (by the changing colours). I'm satisfied with this choice.
 
 - <b> Button to choose countries in the linechart</b>:
