@@ -17,7 +17,7 @@ are visible. The information on these visualizations are budget deficit related.
 When you click on a country in the map, a modal appears with the spendings information. Here are the
 piechart and the barchart function.
 
-- ### map.js:
+- map.js:
 <b>Code</b>: In this file my Europian Map is made and updated. In the beginning the svg is made and the information
 for the map is added. Then the map is drawed via the function map. Via
 makeText is the year in the leftcorner added and updated. In this javascript there is also the code for the slider.
@@ -26,7 +26,7 @@ the colours according to the budget deficit that year. There is in the map also 
 The map function is also in contact with the barchart,
 piechart and the modal. If you click on a country, the modal appears and the barchart and piechart are updated
 with the country and year information, because these functions are called in the map javascript file.
-<b>Functionality<b/>: The map first drawn is of the year 1995, all the countries are coloured
+<b>Functionality</b>: The map first drawn is of the year 1995, all the countries are coloured
 by their budget deficit that year. There is a slider below the map, where you can change the
 year and update the map according to that year. In the legend, added next to the map
 it is clear which colour correspondends with which budget deficit percentage. You can also hover with
@@ -34,7 +34,7 @@ your mouse over the countries, then a tooltip appears which shows you the name o
 in the year you're slider is.
 
 - linechart.js
-Code: In this file I make and update the linechart. First is the svg made for the linechart. In a
+<b>Code</b>: In this file I make and update the linechart. First is the svg made for the linechart. In a
 dictionary I put the values of every country in a list. Then the function countryline is called.
 In this function I make one line for the country it is called for. Therefore I call this function
 23 times, for each country in my dataset. So in the beginning a multiple linechart is made with 23 lines.
@@ -44,14 +44,13 @@ If the button is pushed in the top for a specific country, all the lines are rem
 only the line of that one country is drawed (calling the countryline function once with that info).
 The yscale is updated via with the data and then the axis are updated as well. If you click on the
 all countries option, all the lines are drawed again as in the beginning.
-
-Funcionality: In this visualization I show the historical budget deficits of the countries.
+<b>Functionality</b>: In this visualization I show the historical budget deficits of the countries.
 The first linechart drawn is with all the countries together. Via a button next to the title you can
 select a certain country and only the line of that country is drawed. The axis move together with
 the range of the country values. It is also possible to draw all the lines together again.
 
 - piechart.js
-Code: The piechart is shown in the modal, when clicked on a country. Therefore the main function piechart is a
+<b>Code</b>: The piechart is shown in the modal, when clicked on a country. Therefore the main function piechart is a
 global function (pieChartFunction), which can be called from in the map.js. Before anything is called, the svg,
 the width height and radius are determined above. The piechart.js file calls itself in the beginning,
 to make the fist piechart. The piechart function calls the firstPiechart function.
@@ -59,15 +58,14 @@ When a country is clicked on in the map, the mapjavascript calls the piechartFun
 which calls the updatepiechartfunction. The pieChartFunction contains
 the new country and year, and with that information the piechart is updated. The function arcTween
 makes sure the update goes smoothly.
-
-Functionality: In this visualization it is shown which percentage of the total spendings is spent to
+<b>Functionality</b>: In this visualization it is shown which percentage of the total spendings is spent to
 a specific sector. The visualization appears when the user clicks on a country in the worldmap.
 According to the year and the country the user selects, the piechart is made with that information.
 In the middle of the piechart the year and country are shown, when you hover over the charts, the
 percentage and the sector are shown.
 
 - barchart.js
-Code: The barchart is also shown in the modal, when clicked on a country. Therefore the main function barchart is also a
+- <b>Code</b>: The barchart is also shown in the modal, when clicked on a country. Therefore the main function barchart is also a
 global function (barChartFunction), which can be called from in the map.js. The barchart.js file calls itself in the beginning,
 to make the fist barchart. The barchart function calls the firstBarchart and the makeAxis function. The makeText
 function adds the total percentage of GDP spend information in the top of the histogram.
@@ -76,8 +74,7 @@ which calls the updateBarchart fucntion. The barChartFunction contains
 the new country and year, and with that information the barchart is updated. The function makeText
 is called as well, which updates the total spendingsinformation on top. The makeAxis function is not called again,
 because the axis are for every update the same, so they can stay the same.
-
-Functionality: In this visualization it is shown which percentage of the GDP of that country that year is
+<b>Functionality</b>: In this visualization it is shown which percentage of the GDP of that country that year is
 spent to a specific sector. The visualizatoin appears next to the piechart when the user clicks on a country in the worldmap.
 According to the year and the country the user selects, the barchart is made with that information.
 
