@@ -17,8 +17,10 @@ the GDP spend to the different sectors, and the total percentage of the GDP spen
 
 ## Technical design
 
-For each of my data visualizations I made a new javascriptfile. There are four visualizations in my
-website: a map, multiple linechart, piechart and a barchart.
+My website has 2 main pages: the homepage and the explanation page. In my homepage there are the visualizations.
+There are four visualizations on my website: a map, multiple linechart, piechart and a barchart.
+For every visualization I made a new javascript (which I will explain below). In my explanation page there is only text.
+I will explain my javascripts and visualizations below:
 
 ### map.js:
 - <b>Code</b>: In this file my Europian Map is made and updated. In the beginning the svg is made and the information
