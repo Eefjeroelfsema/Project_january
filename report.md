@@ -17,9 +17,9 @@ the GDP spend to the different sectors, and the total percentage of the GDP spen
 
 ## Technical design
 
-My website has 2 main pages: the homepage and the explanation page. In my homepage there are the visualizations.
+My website has 2 main pages: the homepage and the explanation page. In my homepage are the visualizations.
 There are four visualizations on my website: a map, multiple linechart, piechart and a barchart.
-For every visualization I made a new javascript (which I will explain below). In my explanation page there is only text.
+For every visualization I made a new javascript. In my explanation page there is only text.
 I will explain my javascripts and visualizations below:
 
 ### map.js:
