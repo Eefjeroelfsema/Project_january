@@ -3,7 +3,7 @@
 - Author: Eefje Roelfsema, 10993673
 
 ## Website
-https://eefjeroelfsema.github.io/Poject_january/code/homepage.html
+https://eefjeroelfsema.github.io/Project_january/code/homepage.html
 
 ## Projectvideo
 See my project video via this link:
